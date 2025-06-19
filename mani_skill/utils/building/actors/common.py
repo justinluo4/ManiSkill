@@ -12,7 +12,8 @@ from mani_skill.envs.scene import ManiSkillScene
 from mani_skill.utils.building.actor_builder import ActorBuilder
 from mani_skill.utils.structs.pose import Pose
 from mani_skill.utils.structs.types import Array
-
+from scipy.spatial.transform import Rotation
+from mani_skill.utils.geometry import rotation_conversions
 
 def _build_by_type(
     builder: ActorBuilder,
@@ -316,4 +317,80 @@ def build_colorful_cube(
             base_color=color,
         ),
     )
+    return _build_by_type(builder, name, body_type, scene_idxs, initial_pose)
+
+
+def build_tree(
+    scene: ManiSkillScene,
+    half_thickness: float,
+    radius: float,
+    color,
+    name: str,
+    body_type: str = "dynamic",
+    add_collision: bool = True,
+    scene_idxs: Optional[Array] = None,
+    initial_pose: Optional[Union[Pose, sapien.Pose]] = None,
+    num_links: int = 10,
+
+):
+
+    points = [np.array([0.,0.,0.])]
+    while len(points) < num_links+1:
+        p = np.random.uniform(low=-radius, high=radius, size = (3,))
+        if np.linalg.norm(p) < radius:
+            points.append(p)
+    dists = [np.inf for _ in range(num_links+1)]
+    closest = [-1 for _ in range(num_links+1)]
+    used = np.zeros(num_links+1)
+    cur = 0
+    used[cur] = 1
+    for _ in range(num_links):
+        for other in range(num_links+1):
+            if other == cur:
+                continue
+            if used[other]:
+                continue
+            if np.linalg.norm(points[other] - points[cur]) < dists[other]:
+                closest[other] = cur
+                dists[other] = np.linalg.norm(points[other] - points[cur])
+    edges = []
+    for i in range(1, num_links+1):
+        edges.append((i, closest[i]))
+
+
+
+    builder = scene.create_actor_builder()
+    for edge in edges:
+        p1 = points[edge[0]]
+        p2 = points[edge[1]]
+        length = np.linalg.norm(p2 - p1)
+        base = np.array([0, 0, 1])
+        target = (p2 - p1)/length
+        center = (p1 + p2) / 2
+        rv = np.cross(base, target)
+        rv = rv/np.linalg.norm(rv)
+        rv *= np.arccos(np.sum(base * target))
+        # print(target, rv)
+        # input()
+
+        rot = Rotation.from_rotvec(rv).as_quat()
+
+        if add_collision:
+            builder.add_capsule_collision(
+                pose = sapien.Pose(p = center, q = rot),
+                radius=half_thickness,
+                half_length = length/2
+
+            )
+
+
+        builder.add_capsule_visual(
+            pose=sapien.Pose(p=center, q=rot),
+            radius=half_thickness,
+            half_length=length / 2,
+            material=sapien.render.RenderMaterial(
+                base_color=color,
+            ),
+        )
+
     return _build_by_type(builder, name, body_type, scene_idxs, initial_pose)

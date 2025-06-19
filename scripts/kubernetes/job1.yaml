@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clone
+spec:
+  template:
+    spec:
+      volumes:
+        - name: script-volume
+          emptyDir: { }
+
+      initContainers:
+        - name: git-clone
+          image: alpine/git
+          command: [ "git", "clone", "https://github.com/your-user/your-repo.git", "/scripts" ]
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+        resources:
+           limits:
+             memory: 200Mi
+             cpu: 1
+           requests:
+             memory: 50Mi
+             cpu: 50m
+      restartPolicy: Never
+  backoffLimit: 4
