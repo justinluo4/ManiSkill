@@ -261,5 +261,6 @@ def build_panda_gripper_grasp_pose_visual(scene: ManiSkillScene):
         half_size=[0.04, grasp_pose_visual_width, grasp_pose_visual_width],
         material=sapien.render.RenderMaterial(base_color=[1, 0, 0, 0.7]),
     )
-    grasp_pose_visual = builder.build_kinematic(name="grasp_pose_visual")
+    builder.set_initial_pose(sapien.Pose())
+    grasp_pose_visual = builder.build_kinematic(name="grasp_pose_visual" + str(np.random.randint(10000000)))
     return grasp_pose_visual

@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Dict, Union
 
 import numpy as np
 import sapien.core as sapien
@@ -11,13 +10,14 @@ from mani_skill.agents.robots import PandaWristCam
 from mani_skill.envs.sapien_env import BaseEnv
 from mani_skill.envs.utils import randomization
 from mani_skill.sensors.camera import CameraConfig
-from mani_skill.utils import common, io_utils, sapien_utils
+from mani_skill.utils import common, io_utils, sapien_utils, grasping
 from mani_skill.utils.geometry import rotation_conversions
 from mani_skill.utils.registration import register_env
 from mani_skill.utils.scene_builder.table import TableSceneBuilder
 from mani_skill.utils.structs import Actor, Pose
 from mani_skill.utils.structs.types import GPUMemoryConfig, SimConfig
-
+from mani_skill.examples.motionplanning.panda.motionplanner import build_panda_gripper_grasp_pose_visual
+from typing import Any, Dict, Union
 
 @register_env(
     "AssemblingKits-v1", asset_download_ids=["assembling_kits"], max_episode_steps=200
@@ -38,7 +38,7 @@ class AssemblingKitsEnv(BaseEnv):
 
     _sample_video_link = "https://github.com/haosulab/ManiSkill/raw/main/figures/environment_demos/AssemblingKits-v1_rt.mp4"
 
-    SUPPORTED_REWARD_MODES = ["sparse", "none"]
+    SUPPORTED_REWARD_MODES = ["sparse","dense", "none"]
     SUPPORTED_ROBOTS = ["panda_wristcam"]
     agent: Union[PandaWristCam]
 
@@ -67,11 +67,14 @@ class AssemblingKitsEnv(BaseEnv):
         self.symmetry = self._episode_json["config"]["symmetry"]
         self.color = self._episode_json["config"]["color"]
         self.object_scale = self._episode_json["config"]["object_scale"]
+        self.target_grasp = None
+        self.num_envs = num_envs
         if reconfiguration_freq is None:
             if num_envs == 1:
                 reconfiguration_freq = 1
             else:
                 reconfiguration_freq = 0
+        kwargs["reward_mode"] = "dense"
         super().__init__(
             robot_uids=robot_uids,
             num_envs=num_envs,
@@ -118,6 +121,7 @@ class AssemblingKitsEnv(BaseEnv):
             self.object_ids = []
             self.goal_pos = np.zeros((self.num_envs, 3))
             self.goal_rot = np.zeros((self.num_envs,))
+            self.grasp_pose = np.zeros((self.num_envs, 3))
 
             for i, eps_idx in enumerate(eps_idxs):
                 scene_idxs = [i]
@@ -171,6 +175,8 @@ class AssemblingKitsEnv(BaseEnv):
             self.object_ids = torch.tensor(self.object_ids, dtype=int)
             self.goal_pos = common.to_tensor(self.goal_pos)
             self.goal_rot = common.to_tensor(self.goal_rot)
+            self.grasp_vis = build_panda_gripper_grasp_pose_visual(self.scene)
+            self.grasp_vis.initial_pose = sapien.Pose()
 
     def _parse_json(self, path):
         """Parse kit JSON information and return the goal positions and rotations"""
@@ -227,7 +233,7 @@ class AssemblingKitsEnv(BaseEnv):
         return builder
 
     def _initialize_episode(self, env_idx: torch.Tensor, options: dict):
-        with torch.device(self.device):
+        with (torch.device(self.device)):
             b = len(env_idx)
             self.table_scene.initialize(env_idx)
             xyz = torch.zeros((b, 3))
@@ -238,6 +244,13 @@ class AssemblingKitsEnv(BaseEnv):
                 b, device=self.device, lock_x=True, lock_y=True
             )
             self.obj.set_pose(Pose.create_from_pq(p=xyz, q=q))
+            self.local_grasp = self.obj.pose
+            self.local_grasp = self.obj.pose.inv() * self.local_grasp
+            ax = torch.zeros((self.num_envs, 3))
+            ax[:, 1] = 1
+            q_grasp = rotation_conversions.axis_angle_to_quaternion(ax * torch.pi)
+            self.local_grasp = self.local_grasp * Pose.create_from_pq(q=q_grasp)
+            self.target_grasp = self.obj.pose * self.local_grasp
 
     def _check_pos_diff(self, pos_eps=2e-2):
         pos_diff = self.goal_pos[:, :2] - self.obj.pose.p[:, :2]
@@ -248,7 +261,7 @@ class AssemblingKitsEnv(BaseEnv):
         rot = rotation_conversions.matrix_to_euler_angles(
             rotation_conversions.quaternion_to_matrix(self.obj.pose.q), "XYZ"
         )[:, -1]
-        rot_diff = torch.zeros((self.num_envs), dtype=torch.float, device=self.device)
+        rot_diff = torch.zeros(self.num_envs, dtype=torch.float, device=self.device)
 
         has_symmetries = self.symmetry[self.object_ids] > 0
         rot_diff_sym = torch.abs(rot - self.goal_rot) % self.symmetry[self.object_ids]
@@ -268,15 +281,58 @@ class AssemblingKitsEnv(BaseEnv):
         pos_diff, pos_diff_norm, pos_correct = self._check_pos_diff()
         rot_diff, rot_correct = self._check_rot_diff()
         in_slot = self._check_in_slot(self.obj)
+        self.grasp_vis.set_pose(self.target_grasp)
+        grasp_diff = grasping.grasp_diff(self.target_grasp, self.agent.tcp.pose)
+        is_grasped = False
         return {
             "pos_diff": pos_diff,
             "pos_diff_norm": pos_diff_norm,
             "pos_correct": pos_correct,
             "rot_diff": rot_diff,
             "rot_correct": rot_correct,
+            "grasp_diff": grasp_diff,
             "in_slot": in_slot,
             "success": pos_correct & rot_correct & in_slot,
+            "is_grasped": is_grasped,
         }
+
+    def update_grasp(self):
+        self.target_grasp = self.obj.pose * self.local_grasp
+        self.grasp_vis.set_pose(self.target_grasp)
+
+    def step(self, action: Union[None, np.ndarray, torch.Tensor, Dict]):
+        self.update_grasp()
+        return super().step(action)
+
+    def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
+
+        grasp_rew = grasping.orient_then_grasp(self.agent.tcp.pose, self.target_grasp) * 2
+        is_grasped = info["grasp_diff"] < 0.1
+
+        place_dist = info["pos_diff_norm"]
+        place_rew = 1 - torch.tanh(5 * place_dist)
+        orient_rew = 1 - torch.tanh(5 * info["rot_diff"])
+        reward = grasp_rew
+        reward += is_grasped * ((place_rew > 0.9) * orient_rew + place_rew)*2
+        reward += info["pos_correct"]
+        reward += info["rot_correct"] * info["pos_correct"]
+
+
+        qvel_without_gripper = self.agent.robot.get_qvel()
+        if self.robot_uids == "xarm6_robotiq":
+            qvel_without_gripper = qvel_without_gripper[..., :-6]
+        elif self.robot_uids == "panda":
+            qvel_without_gripper = qvel_without_gripper[..., :-2]
+        static_reward = 1 - torch.tanh(
+            5 * torch.linalg.norm(qvel_without_gripper, axis=1)
+        )
+        reward += static_reward * info["in_slot"] * info["rot_correct"] * info["pos_correct"] * 5
+        return reward
+
+    def compute_normalized_dense_reward(
+            self, obs: Any, action: torch.Tensor, info: Dict
+    ):
+        return self.compute_dense_reward(obs=obs, action=action, info=info)
 
     def _get_obs_extra(self, info: Dict):
         obs = dict(

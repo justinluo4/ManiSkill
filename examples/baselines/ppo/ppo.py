@@ -57,7 +57,7 @@ class Args:
     """the number of parallel environments"""
     num_eval_envs: int = 8
     """the number of parallel evaluation environments"""
-    partial_reset: bool = True
+    partial_reset: bool = False
     """whether to let parallel environments reset upon termination instead of truncation"""
     eval_partial_reset: bool = False
     """whether to let parallel evaluation environments reset upon termination instead of truncation"""
@@ -145,6 +145,7 @@ class Agent(nn.Module):
         return self.critic(x)
     def get_action(self, x, deterministic=False):
         action_mean = self.actor_mean(x)
+        action_mean = torch.nan_to_num(action_mean, 0)
         if deterministic:
             return action_mean
         action_logstd = self.actor_logstd.expand_as(action_mean)

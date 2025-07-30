@@ -288,6 +288,7 @@ class BaseEnv(gym.Env):
         if reward_mode is None:
             reward_mode = self.SUPPORTED_REWARD_MODES[0]
         if reward_mode not in self.SUPPORTED_REWARD_MODES:
+            print(self.SUPPORTED_REWARD_MODES)
             raise NotImplementedError("Unsupported reward mode: {}".format(reward_mode))
         self._reward_mode = reward_mode
 
