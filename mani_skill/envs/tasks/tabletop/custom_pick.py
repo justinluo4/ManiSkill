@@ -121,8 +121,9 @@ class CustomPickEnv(BaseEnv):
         #     initial_pose=sapien.Pose(p=[0, 0, self.cube_half_size]),
         # )
         builder = self.scene.create_actor_builder()
+        collision_filename = "collision_mesh_t=0.04.ply"
         builder.add_multiple_convex_collisions_from_file(
-            filename="/home/justin/PycharmProjects/ManiSkill/mani_skill2_ycb/models/" + self.object_name + "/collision.ply",
+            filename="/home/justin/PycharmProjects/ManiSkill/mani_skill2_ycb/models/" + self.object_name + "/" + collision_filename,
             scale=[1] * 3,
             material=None,
             density=1000,
@@ -151,13 +152,13 @@ class CustomPickEnv(BaseEnv):
 
         with torch.device(self.device):
             b = len(env_idx)
-
+            self.stage = torch.zeros(b)
             all_grasps = np.load(
                 "/home/justin/PycharmProjects/ManiSkill/mani_skill2_ycb/models/grasp_dataset_top_down.npy",
                 allow_pickle=True)
             grasps = all_grasps.item().get(self.object_name)
             grasp_pos = torch.tensor([g["pos"] for g in grasps])
-            grasp_quats = torch.tensor([(R.from_euler("Y", 90, degrees=True) * R.from_quat(g["quat"])).as_quat() for g in grasps])
+            grasp_quats = torch.tensor([(R.from_euler("Y", -90, degrees=True) * R.from_quat(g["quat"])).as_quat() for g in grasps])
             scores = np.array([g["score"] for g in grasps])
             scores /= scores.sum()
             selected_grasps = np.random.choice(len(grasp_pos), b, p=scores)
@@ -171,13 +172,15 @@ class CustomPickEnv(BaseEnv):
             qs = randomization.random_quaternions(b, lock_x=True, lock_y=True)
             # qs[:, [0, 2, 1, 3]] = qs[:, [2, 0, 3, 1]]
             self.cube.set_pose(Pose.create_from_pq(xyz, qs))
+            offsets = torch.zeros((b, 3))
+            offsets[:, 2] = -0.06
+            self.offset = Pose.create_from_pq(offsets)
             self.local_grasp = Pose.create_from_pq(grasp_pos,  grasp_quats)
-            # self.local_grasp.p[:, 2] -= 0.06
             ax = torch.zeros((b, 3))
             ax[:, 1] += 1
             q_noise = rotation_conversions.axis_angle_to_quaternion((ax.T * (torch.rand(b)* 0.4 - 0.2)).T)
             # self.local_grasp = self.local_grasp * Pose.create_from_pq(q=q_noise)
-            self.target_grasp = self.cube.pose * self.local_grasp
+            self.target_grasp = self.cube.pose * (self.local_grasp * self.offset)
             # for g in grasps:
             #     grasp_vis = build_panda_gripper_grasp_pose_visual(self.scene)
             #     print(g["quat"].as_quat())
@@ -207,11 +210,14 @@ class CustomPickEnv(BaseEnv):
         return obs
 
     def update_grasp(self):
-        # grasp_dist = grasp_diff(self.agent.tcp.pose, self.target_grasp)
-        # self.local_grasp.p[grasp_dist < 0.1, 2] += 0.02
-        # self.local_grasp.p[grasp_dist > 0.5, 2] -= 0.02
-        # self.local_grasp.p[:, 2] = torch.clamp(self.local_grasp.p[:, 2], min = -0.08, max=0)
-        self.target_grasp = self.cube.pose * self.local_grasp
+        grasp_dist = grasp_diff(self.agent.tcp.pose, self.target_grasp)
+        self.stage += 1 * (grasp_dist < 0.1)
+        step = 0.02
+        self.offset.p[grasp_dist < 0.1, 2] += step
+        self.offset.p[grasp_dist > 0.5, 2] -= step
+
+        self.offset.p[:, 2] = torch.clamp(self.offset.p[:, 2], min = -0.06, max=0.0)
+        self.target_grasp = self.cube.pose *  (self.local_grasp * self.offset)
         self.grasp_vis.set_pose(self.target_grasp)
 
     def step(self, action: Union[None, np.ndarray, torch.Tensor, Dict]):
@@ -245,7 +251,7 @@ class CustomPickEnv(BaseEnv):
 
         # reward = (reaching_reward*0.5 + diff1 + (diff1.clamp(min = 0) * reaching_reward.clamp(min = 0))**2) * 0.5
         # Add grasp pose reward
-
+        reward += torch.clamp(self.stage * 0.2, min = 0, max = 1)
         is_grasped = info["is_grasped"]
         reward += is_grasped
         obj_to_goal_dist = torch.linalg.norm(

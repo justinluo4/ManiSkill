@@ -75,7 +75,7 @@ class TableSceneBuilder(SceneBuilder):
             qpos = np.array(
                 [
                     0.0,
-                    np.pi / 8,
+                    np.pi / 16,
                     0,
                     -np.pi * 5 / 8,
                     0,
