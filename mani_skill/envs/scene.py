@@ -152,6 +152,12 @@ class ManiSkillScene:
 
         return ArticulationBuilder().set_scene(self)
 
+    def create_decomposition_builder(self):
+
+        from ..utils.building.decomposition_builder import DecompositionBuilder
+
+        return DecompositionBuilder().set_scene(self)
+
     def create_urdf_loader(self):
         """Creates a URDFLoader object that can be used to load URDF files into this scene"""
         from ..utils.building.urdf_loader import URDFLoader

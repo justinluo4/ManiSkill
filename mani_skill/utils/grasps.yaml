@@ -1,0 +1,1616 @@
+format: isaac_grasp
+format_version: 1.0
+grasps:
+  grasp_0:
+    confidence: 0.9947269558906555
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - &id001 !!python/object/apply:numpy.dtype
+      args:
+      - i8
+      - false
+      - true
+      state: !!python/tuple
+      - 3
+      - <
+      - null
+      - null
+      - null
+      - -1
+      - -1
+      - 0
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.06170173104843622
+      xyz:
+      - 0.11252635603699403
+      - 0.06801294313153883
+      - 0.989396257901377
+    position:
+    - -0.03452608655143862
+    - 0.00889656756316645
+    - -0.0940686998758232
+  grasp_1:
+    confidence: 0.9925944209098816
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.07545119932917684
+      xyz:
+      - 0.11156338795772212
+      - 0.04375210818602571
+      - 0.989922461618314
+    position:
+    - -0.030416543734561256
+    - 0.025369734207739664
+    - -0.09783943126534575
+  grasp_10:
+    confidence: 0.9849513173103333
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.983368944713884
+      xyz:
+      - -0.021007526434607564
+      - 0.13209898058590563
+      - -0.12285789243498148
+    position:
+    - -0.034232287806760124
+    - 0.03429213974868281
+    - -0.09817488620614165
+  grasp_11:
+    confidence: 0.9840925931930542
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.03705184756142233
+      xyz:
+      - -0.019776697301378588
+      - -0.1737348783219297
+      - 0.983896455370482
+    position:
+    - -0.00635948139179831
+    - 0.0495431988338135
+    - -0.09483742097949141
+  grasp_12:
+    confidence: 0.9832388162612915
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.06736473720791177
+      xyz:
+      - -0.11194431405013242
+      - 0.9901952335095553
+      - 0.04943543534461763
+    position:
+    - -0.016221097809563927
+    - -0.03969143267477529
+    - 0.09459607919121629
+  grasp_13:
+    confidence: 0.9819726943969727
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9819353260282069
+      xyz:
+      - 0.002774390003984261
+      - -0.07380859103771398
+      - -0.17420565475039151
+    position:
+    - 0.010403720522929379
+    - 0.04875064704810603
+    - -0.09880464653109663
+  grasp_14:
+    confidence: 0.9818561673164368
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.11466232891055896
+      xyz:
+      - 0.06587757896704244
+      - -0.9700446846791099
+      - -0.20377930376771367
+    position:
+    - 0.01363525060068483
+    - -0.04550241615379827
+    - 0.08958079536820299
+  grasp_15:
+    confidence: 0.981517493724823
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.043591583203564765
+      xyz:
+      - 0.9799072266744494
+      - 0.1910131554345129
+      - -0.03735740135430297
+    position:
+    - -0.0023657382779741437
+    - -0.02299597050751226
+    - 0.09933373202944643
+  grasp_16:
+    confidence: 0.9800091981887817
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.07285720718814431
+      xyz:
+      - 0.06444239553903258
+      - -0.1340436603886297
+      - 0.9861902971169174
+    position:
+    - -0.019495220062624267
+    - 0.059380334506382776
+    - -0.0967329306397354
+  grasp_17:
+    confidence: 0.9799149632453918
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.8297692361852489
+      xyz:
+      - 0.15240632975933083
+      - 0.49001902437893463
+      - -0.21940073171381277
+    position:
+    - -0.08270742292452937
+    - 0.0835795073608063
+    - -0.047781301090470484
+  grasp_18:
+    confidence: 0.9797186851501465
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.14923143855587978
+      xyz:
+      - -0.10993253323793153
+      - -0.009486168213744373
+      - 0.9826264949079352
+    position:
+    - 0.02469983217369432
+    - 0.061931413302769495
+    - -0.10101495067214125
+  grasp_19:
+    confidence: 0.9794798493385315
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.45522218039083073
+      xyz:
+      - -0.047267423446723945
+      - -0.8882141007629821
+      - 0.0401779587178504
+    position:
+    - 0.07013015155743474
+    - 0.04033142019306643
+    - 0.0591026829686249
+  grasp_2:
+    confidence: 0.9914422631263733
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.09785472614678173
+      xyz:
+      - 0.27257839292292374
+      - 0.0459733640957104
+      - 0.9560397073741331
+    position:
+    - -0.0628576084499467
+    - 0.03674355585371478
+    - -0.08240185807084197
+  grasp_20:
+    confidence: 0.9793661236763
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9863072027321447
+      xyz:
+      - 0.08171290433491651
+      - -0.061567800167200204
+      - 0.129346469168728
+    position:
+    - 0.004676699964959569
+    - -0.012011027259180714
+    - -0.09628447274302596
+  grasp_21:
+    confidence: 0.978882372379303
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.0631150553810819
+      xyz:
+      - 0.4491381465397217
+      - 0.039909815923713565
+      - 0.8903362408102022
+    position:
+    - -0.08987540299941188
+    - 0.03978106070553286
+    - -0.05536205078100317
+  grasp_22:
+    confidence: 0.9785904884338379
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.5058226649709653
+      xyz:
+      - 0.05257753811017662
+      - -0.8571599057745389
+      - 0.08158388333811557
+    position:
+    - 0.0753008023376357
+    - 0.01805494230483992
+    - 0.04819716011548884
+  grasp_23:
+    confidence: 0.9778815507888794
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9665642755517042
+      xyz:
+      - 0.10918613849334965
+      - -0.2236472883607118
+      - 0.06175579970352132
+    position:
+    - 0.028667560639489838
+    - 0.029809497932543588
+    - -0.08863952139948958
+  grasp_24:
+    confidence: 0.9778043627738953
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.43418813236506254
+      xyz:
+      - 0.08763382316774482
+      - -0.8953363571568652
+      - 0.04662388125646851
+    position:
+    - 0.07053669248770589
+    - -0.009882513729283978
+    - 0.062005444070347616
+  grasp_25:
+    confidence: 0.9772975444793701
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.055275703865120915
+      xyz:
+      - 0.9841304972722096
+      - -0.08549745680415266
+      - 0.14533391132489046
+    position:
+    - -0.03601217563201075
+    - 0.047758781055559946
+    - 0.09408102800513155
+  grasp_26:
+    confidence: 0.977216362953186
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.8740605846677244
+      xyz:
+      - -0.010357050727611795
+      - 0.45889886809494107
+      - -0.1591309356841817
+    position:
+    - -0.08995906556893474
+    - 0.05897673655544741
+    - -0.058633880117884805
+  grasp_27:
+    confidence: 0.9767147302627563
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.11103166793026246
+      xyz:
+      - 0.5230419312030068
+      - -0.12083666460881848
+      - 0.836359735643861
+    position:
+    - -0.09511886085320598
+    - 0.07059861410652621
+    - -0.03747460747694128
+  grasp_28:
+    confidence: 0.9764456152915955
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9609253060537808
+      xyz:
+      - -0.1186617344023785
+      - -0.16248819623345767
+      - -0.19010401115932582
+    position:
+    - 0.018538703071583458
+    - 0.009811744729628395
+    - -0.0916556281838333
+  grasp_29:
+    confidence: 0.9761166572570801
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9667839794015005
+      xyz:
+      - 0.002100544448048623
+      - -0.2027617240995454
+      - 0.15560208265251832
+    position:
+    - 0.03786620576928968
+    - -0.0337073051532604
+    - -0.09157486389016264
+  grasp_3:
+    confidence: 0.9887682795524597
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9166807814324266
+      xyz:
+      - -0.13865123978105212
+      - 0.37397073581120155
+      - 0.024860961695816017
+    position:
+    - -0.07854808415223247
+    - -0.011588035446951557
+    - -0.06667368988131636
+  grasp_30:
+    confidence: 0.9759393930435181
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.18671231784789744
+      xyz:
+      - 0.9022077857325073
+      - 0.12937891028024928
+      - -0.36663431277256026
+    position:
+    - 0.054442883330095955
+    - 0.020218725020637346
+    - 0.06761641671324617
+  grasp_31:
+    confidence: 0.9753835797309875
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.15893161204940612
+      xyz:
+      - -0.9677124447978672
+      - -0.16138007619892947
+      - -0.11058859742640574
+    position:
+    - -0.02052069748688822
+    - -0.06487147073949354
+    - 0.09317261596585161
+  grasp_32:
+    confidence: 0.9747523069381714
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9587080272935069
+      xyz:
+      - -0.09525350946148962
+      - 0.2297944841115379
+      - 0.1378411491905626
+    position:
+    - -0.04302968378115778
+    - -0.061820491512665915
+    - -0.08572126309012526
+  grasp_33:
+    confidence: 0.9744929671287537
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9310291017473915
+      xyz:
+      - 0.09002124506799465
+      - 0.32492892338779444
+      - -0.13965021260958513
+    position:
+    - -0.06641947771359569
+    - 0.06608427752052767
+    - -0.07938591519927138
+  grasp_34:
+    confidence: 0.9738706350326538
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.1885428165123863
+      xyz:
+      - 0.1453504532012587
+      - 0.14998204001789817
+      - -0.9595989994616688
+    position:
+    - 0.02568315793823118
+    - -0.02143242705369966
+    - -0.09227309505080336
+  grasp_35:
+    confidence: 0.9735974073410034
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7972744942513401
+      xyz:
+      - 0.06214418980354677
+      - 0.5717934681129236
+      - -0.18314942072888368
+    position:
+    - -0.10051984633256084
+    - 0.07638828892504199
+    - -0.03370451311205976
+  grasp_36:
+    confidence: 0.9735406041145325
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.1153811269360275
+      xyz:
+      - -0.9711394201077989
+      - 0.019705339360353624
+      - -0.20781511460996746
+    position:
+    - -0.053105767024051
+    - 0.005309556780954432
+    - 0.09182155003214723
+  grasp_37:
+    confidence: 0.9731403589248657
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.1814467228548496
+      xyz:
+      - 0.9820980274376266
+      - 0.003623340419703275
+      - 0.050471998896032585
+    position:
+    - -0.02316846619297152
+    - 0.0377365282574795
+    - 0.09452445675993806
+  grasp_38:
+    confidence: 0.9730955362319946
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7537291969592392
+      xyz:
+      - 0.10747201633286865
+      - 0.6343161498301138
+      - -0.13410848377798365
+    position:
+    - -0.10709158624459392
+    - 0.05328216467296107
+    - -0.015549052866152456
+  grasp_39:
+    confidence: 0.9730192422866821
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.10993870275831809
+      xyz:
+      - -0.976806920635096
+      - -0.18273852712986804
+      - -0.019192502119462808
+    position:
+    - -0.013051275302957348
+    - -0.03821786429489629
+    - 0.09382863213683015
+  grasp_4:
+    confidence: 0.988686203956604
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9662799121650589
+      xyz:
+      - -0.10844252537805381
+      - 0.23094784416653058
+      - 0.03473389282457009
+    position:
+    - -0.054124637645970634
+    - -0.017987291624198126
+    - -0.0838961688671028
+  grasp_40:
+    confidence: 0.9729225039482117
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.816998848867463
+      xyz:
+      - -0.27344972382942906
+      - 0.41760675507569667
+      - 0.2886914054868905
+    position:
+    - -0.053979094279300026
+    - -0.1148954437276222
+    - -0.05256810540889852
+  grasp_41:
+    confidence: 0.9726701378822327
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9685087570333377
+      xyz:
+      - 0.02868314744375075
+      - 0.07719657142880931
+      - 0.23496543141938023
+    position:
+    - -0.013690558401237778
+    - -0.049933265258917975
+    - -0.1013919500503456
+  grasp_42:
+    confidence: 0.9723978638648987
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.5091868588077618
+      xyz:
+      - 0.10231234935049206
+      - -0.853589571361355
+      - 0.04056808660764914
+    position:
+    - 0.08062262539814824
+    - -0.014822087546239067
+    - 0.0467009158935631
+  grasp_43:
+    confidence: 0.9722077250480652
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.2584813415342385
+      xyz:
+      - -0.008279726424258812
+      - 0.9659797972482812
+      - 0.0013687648334329576
+    position:
+    - -0.0638566977803815
+    - 0.018916927913775278
+    - 0.08976842333937532
+  grasp_44:
+    confidence: 0.9720361828804016
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.5376935316055006
+      xyz:
+      - -0.007374669689698276
+      - -0.8423678609853292
+      - -0.035322331400587326
+    position:
+    - 0.07528371070574635
+    - 0.01443485420440657
+    - 0.04090156649614222
+  grasp_45:
+    confidence: 0.972002387046814
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.2614805399258934
+      xyz:
+      - 0.4099254049875346
+      - -0.19737031045350129
+      - 0.851254398013518
+    position:
+    - -0.05618429849792605
+    - 0.12361205805336459
+    - -0.05862958113288038
+  grasp_46:
+    confidence: 0.9717232584953308
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.01982578970948044
+      xyz:
+      - -0.6433571111768822
+      - -0.13350288993593706
+      - 0.753575174710052
+    position:
+    - 0.108063828992356
+    - -0.05349368165935056
+    - -0.02052581625615709
+  grasp_47:
+    confidence: 0.9714059233665466
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.10264116972967349
+      xyz:
+      - -0.9768020301267587
+      - 0.06249587773030488
+      - -0.17724798865850624
+    position:
+    - -0.045794154656421
+    - 0.02122201275323851
+    - 0.09290069212580568
+  grasp_48:
+    confidence: 0.9712808728218079
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.15534892672556572
+      xyz:
+      - 0.6708035198202282
+      - -0.17131884121567498
+      - 0.7046553791794444
+    position:
+    - -0.09966436321784145
+    - 0.08192531455551608
+    - 0.0005340269897366257
+  grasp_49:
+    confidence: 0.9711361527442932
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9615786648187081
+      xyz:
+      - -0.020970130259594603
+      - -0.2737272015758435
+      - -0.00037963116738131737
+    position:
+    - 0.043163877772797295
+    - -0.004779011539543438
+    - -0.07815302292441481
+  grasp_5:
+    confidence: 0.9880107045173645
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.08006607215314203
+      xyz:
+      - 0.18916696377145434
+      - 0.03558285898666913
+      - -0.9780281918502104
+    position:
+    - 0.02802819092820997
+    - 0.005225005729695391
+    - -0.0932284830007469
+  grasp_50:
+    confidence: 0.9710161089897156
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7613708029929678
+      xyz:
+      - 0.005106916804849406
+      - 0.6449232539861863
+      - -0.06604858982946284
+    position:
+    - -0.10763122434664851
+    - 0.03195372287427409
+    - -0.015370037766150167
+  grasp_51:
+    confidence: 0.9707596898078918
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.808177804857548
+      xyz:
+      - 0.05311532366454742
+      - 0.5829140776967475
+      - -0.0651043481696499
+    position:
+    - -0.10687149609376079
+    - 0.032090161631455255
+    - -0.029605224156728914
+  grasp_52:
+    confidence: 0.9707543849945068
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7877329883356549
+      xyz:
+      - 0.02468241681614946
+      - 0.6040253328345443
+      - -0.11840994334096704
+    position:
+    - -0.1021143525366891
+    - 0.04430328745638354
+    - -0.02556061128710859
+  grasp_53:
+    confidence: 0.9706535339355469
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9775177752855904
+      xyz:
+      - 0.004744717280635505
+      - -0.015603200107636828
+      - 0.21022137570912763
+    position:
+    - 0.009366372461129376
+    - -0.05957028951252477
+    - -0.10111457983588332
+  grasp_54:
+    confidence: 0.9706263542175293
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.0901748641140808
+      xyz:
+      - -0.6393341213504731
+      - -0.0737733933220388
+      - -0.76005122300854
+    position:
+    - -0.11193140889454967
+    - -0.02989540930593984
+    - -0.014313621805957487
+  grasp_55:
+    confidence: 0.9698410034179688
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.17085448046590204
+      xyz:
+      - -0.9671815561257859
+      - 0.06642029283962425
+      - -0.175945811811275
+    position:
+    - -0.04675853545714503
+    - 0.006333899388661217
+    - 0.08734907825852281
+  grasp_56:
+    confidence: 0.9696238040924072
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.11655146155908624
+      xyz:
+      - 0.026358520147632597
+      - 0.9882446887170391
+      - 0.09535942767566652
+    position:
+    - -0.02912009800721293
+    - 0.024943745399465395
+    - 0.09588703384066469
+  grasp_57:
+    confidence: 0.9694960117340088
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.4474216515731894
+      xyz:
+      - -0.07555102471007909
+      - 0.8851136015311267
+      - 0.10334321822632694
+    position:
+    - -0.086670297337066
+    - -0.05144644465054052
+    - 0.060317570915469
+  grasp_58:
+    confidence: 0.9692714214324951
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.025629171149313575
+      xyz:
+      - 0.546344144066075
+      - 0.059049258793459014
+      - 0.8350834729934791
+    position:
+    - -0.10946141476679927
+    - 0.0050834097737572905
+    - -0.03500192368959539
+  grasp_59:
+    confidence: 0.9684411287307739
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.10874582504119146
+      xyz:
+      - 0.9479280830325597
+      - 0.02723535837308938
+      - 0.29810221433028095
+    position:
+    - -0.06586945350218898
+    - 0.014699562157144378
+    - 0.0820443840828026
+  grasp_6:
+    confidence: 0.9872080683708191
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.11905658369328503
+      xyz:
+      - -0.991853960477938
+      - -0.038783409619200404
+      - -0.023390128298544293
+    position:
+    - -0.01733037936438208
+    - -0.018706537147412466
+    - 0.09804949035311586
+  grasp_60:
+    confidence: 0.9681082963943481
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.749289699943117
+      xyz:
+      - -0.08909928566330391
+      - 0.6224891835946643
+      - 0.20768601099036757
+    position:
+    - -0.091728451800834
+    - -0.08707821678126829
+    - -0.022706411207071474
+  grasp_61:
+    confidence: 0.9677886366844177
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7065878104462148
+      xyz:
+      - -0.20825594644221368
+      - 0.6149937740188718
+      - 0.2813286064699191
+    position:
+    - -0.06977868373442775
+    - -0.12289819430316465
+    - -0.016947211125842264
+  grasp_62:
+    confidence: 0.9677244424819946
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.08164304601589562
+      xyz:
+      - 0.5564592498203288
+      - 0.061611495326666765
+      - -0.8245553589482366
+    position:
+    - 0.10372045342873448
+    - -0.05477252539003866
+    - -0.04244606325959318
+  grasp_63:
+    confidence: 0.9675019979476929
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.0809905181861233
+      xyz:
+      - -0.9037975946258977
+      - -0.02942231975845394
+      - -0.4191953852470418
+    position:
+    - -0.08781431908656245
+    - -0.00219875015773477
+    - 0.0644979836549843
+  grasp_64:
+    confidence: 0.9672297835350037
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.2911958764006775
+      xyz:
+      - -0.05066382629358574
+      - 0.943077559233493
+      - -0.1524560774214396
+    position:
+    - -0.05957072894025927
+    - -0.013259575997839142
+    - 0.07870877405072099
+  grasp_65:
+    confidence: 0.9671682119369507
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.057649414482207936
+      xyz:
+      - -0.04520291565824336
+      - 0.9949910289019512
+      - -0.06801539406993444
+    position:
+    - -0.022088808146606735
+    - -0.019658907612214255
+    - 0.09417017420197374
+  grasp_66:
+    confidence: 0.9666052460670471
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.6418403459295308
+      xyz:
+      - -0.0567259565225705
+      - 0.7647372807791648
+      - -0.00016607271867547402
+    position:
+    - -0.10963700259972697
+    - 0.012738845015516113
+    - 0.019208146831044028
+  grasp_67:
+    confidence: 0.9665414094924927
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.24978461070353988
+      xyz:
+      - -0.95382079284734
+      - -0.16028924578930864
+      - -0.046269872185334536
+    position:
+    - -0.0033616269583102093
+    - -0.08448764245713727
+    - 0.0865992443766678
+  grasp_68:
+    confidence: 0.9665189981460571
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.070167844857137
+      xyz:
+      - -0.009880935875628374
+      - 0.9660507868466477
+      - 0.24844459721897794
+    position:
+    - -0.022042670426260284
+    - -0.017897316550264525
+    - 0.08802085985804445
+  grasp_69:
+    confidence: 0.9663223028182983
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7777483065379929
+      xyz:
+      - -0.2720822847975217
+      - 0.4626195685885661
+      - 0.3272032040423408
+    position:
+    - -0.054617251408587746
+    - -0.12195581506694333
+    - -0.044666515091410806
+  grasp_7:
+    confidence: 0.986510694026947
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.020879613532989068
+      xyz:
+      - -0.0023878372454245625
+      - 0.17646066544124772
+      - 0.9840833163528553
+    position:
+    - -0.008914924365769676
+    - -0.03221114475036638
+    - -0.0947042194995796
+  grasp_70:
+    confidence: 0.966116726398468
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.08784503556121288
+      xyz:
+      - -0.1418968288539885
+      - -0.14605237138688398
+      - 0.9750985819396414
+    position:
+    - 0.024890077161301323
+    - 0.06703542609011157
+    - -0.09467961023186797
+  grasp_71:
+    confidence: 0.9661024808883667
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.107556446762547
+      xyz:
+      - 0.9317015175195388
+      - 0.037883189485163504
+      - 0.3448604891344259
+    position:
+    - -0.07067705239106303
+    - -0.004516730380604434
+    - 0.07576124986077196
+  grasp_72:
+    confidence: 0.9659924507141113
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.6155878642747474
+      xyz:
+      - 0.19387371553396876
+      - 0.7117939294927568
+      - -0.27715332529119835
+    position:
+    - -0.0777300849084962
+    - 0.12028243828808291
+    - 0.008409668331989119
+  grasp_73:
+    confidence: 0.9659606218338013
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.10028234651694848
+      xyz:
+      - -0.9165682838171616
+      - -0.004991990236711652
+      - -0.38706732245307685
+    position:
+    - -0.08471802915383464
+    - 0.009189038241853546
+    - 0.07143864651585466
+  grasp_74:
+    confidence: 0.965494692325592
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.6403079403617952
+      xyz:
+      - 0.10473681435238794
+      - -0.750558812751943
+      - 0.12528930452892942
+    position:
+    - 0.09514275644968861
+    - -0.014725122896382977
+    - 0.013741394145437548
+  grasp_75:
+    confidence: 0.9651915431022644
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.8316620542091113
+      xyz:
+      - -0.051357457988694157
+      - 0.5039299749781347
+      - 0.2274977349692899
+    position:
+    - -0.07968332911778575
+    - -0.0818957568308212
+    - -0.04991079995965116
+  grasp_76:
+    confidence: 0.9651013612747192
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7003525345932283
+      xyz:
+      - -0.0987956251633575
+      - 0.7004684610643772
+      - 0.09533984891704621
+    position:
+    - -0.10754763628293162
+    - -0.04307152267302053
+    - 5.9845522279234394e-06
+  grasp_77:
+    confidence: 0.9649170637130737
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7595815522228228
+      xyz:
+      - 0.19816259508794828
+      - 0.4907372866507296
+      - -0.3780798419930076
+    position:
+    - -0.05337899471570139
+    - 0.12465940106903536
+    - -0.04546940455769651
+  grasp_78:
+    confidence: 0.9648131132125854
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.21235782760878624
+      xyz:
+      - -0.9365557795633038
+      - -0.2690063701095877
+      - -0.07350508594861309
+    position:
+    - 0.004370314395685144
+    - -0.10416902910674589
+    - 0.08783364911938554
+  grasp_79:
+    confidence: 0.963849663734436
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.1497638580302973
+      xyz:
+      - -0.9408655215635828
+      - -0.190954809395312
+      - -0.2363876433521185
+    position:
+    - -0.03937220866728907
+    - -0.08388873498643415
+    - 0.08371555676127321
+  grasp_8:
+    confidence: 0.9863424897193909
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.9935400464859939
+      xyz:
+      - 0.060102963642947864
+      - 0.06749878261927789
+      - -0.06862742990131189
+    position:
+    - -0.024141046357642464
+    - 0.039467156569113565
+    - -0.09352452437018507
+  grasp_80:
+    confidence: 0.9636484384536743
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.07311497712144269
+      xyz:
+      - 0.48283306738194115
+      - 0.02176187313771849
+      - -0.8723834306316315
+    position:
+    - 0.09313581590603703
+    - -0.0584081367751457
+    - -0.05721235776876562
+  grasp_81:
+    confidence: 0.9630182981491089
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.19447849057435776
+      xyz:
+      - 0.5142696603875494
+      - -0.18894412099578084
+      - 0.813636867558204
+    position:
+    - -0.08171566124011165
+    - 0.08994587946926577
+    - -0.03648610542153471
+  grasp_82:
+    confidence: 0.9623302817344666
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7908817731339058
+      xyz:
+      - -0.11215311848339847
+      - 0.5568957338281381
+      - 0.2275847986642299
+    position:
+    - -0.08312984104205257
+    - -0.09792031656707303
+    - -0.03690286482309454
+  grasp_83:
+    confidence: 0.9622859954833984
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7112508637999504
+      xyz:
+      - -0.21043788080766446
+      - 0.5792215347998763
+      - 0.338142751939294
+    position:
+    - -0.059814199013005546
+    - -0.13502802263701932
+    - -0.02620543109809511
+  grasp_84:
+    confidence: 0.9620511531829834
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.6091069379047672
+      xyz:
+      - -0.0522041929655426
+      - 0.7896941087459916
+      - 0.05144584575034503
+    position:
+    - -0.10799522246171123
+    - -0.022882503752956557
+    - 0.02844026369417555
+  grasp_85:
+    confidence: 0.961635172367096
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.8143470763518379
+      xyz:
+      - 0.04602422032339315
+      - 0.57595094622983
+      - -0.0547824599466061
+    position:
+    - -0.10503212655831462
+    - 0.02727682393287642
+    - -0.029394965046993425
+  grasp_86:
+    confidence: 0.9614989161491394
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.2480683457732815
+      xyz:
+      - 0.16319906550346988
+      - 0.024186409973255607
+      - 0.9545905815671493
+    position:
+    - -0.02492652195442801
+    - 0.0707608952025078
+    - -0.09592994431590193
+  grasp_87:
+    confidence: 0.9614813923835754
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.12264252659070168
+      xyz:
+      - 0.9787598223321708
+      - -0.10443865845770606
+      - 0.12680925628399928
+    position:
+    - -0.0302971500431407
+    - 0.0748437388638161
+    - 0.09540448953772432
+  grasp_88:
+    confidence: 0.9608352780342102
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.07944638078540622
+      xyz:
+      - -0.356337593079324
+      - 0.05777081126633621
+      - 0.9291793829525943
+    position:
+    - 0.07031247471522206
+    - 0.04624049429093821
+    - -0.07851110527848357
+  grasp_89:
+    confidence: 0.9598504304885864
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.7303836947311276
+      xyz:
+      - -0.15012378098065834
+      - 0.6025503295654672
+      - 0.28449184381195447
+    position:
+    - -0.0733275517349351
+    - -0.12021185021604078
+    - -0.025814305419078996
+  grasp_9:
+    confidence: 0.9855901598930359
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.0710423201377676
+      xyz:
+      - -0.02774006522085077
+      - 0.9965441586669348
+      - -0.032912267588197354
+    position:
+    - -0.02528246226657515
+    - 0.01590614643191321
+    - 0.09547030051613695
+  grasp_90:
+    confidence: 0.9596551060676575
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.2574817630683774
+      xyz:
+      - 0.602983268969496
+      - -0.26759303061107953
+      - 0.7060511943183989
+    position:
+    - -0.07128204698611385
+    - 0.13098261941467745
+    - -0.009337317557982137
+  grasp_91:
+    confidence: 0.958894670009613
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.6349756680666564
+      xyz:
+      - -0.25703736728815674
+      - 0.6464731549339574
+      - 0.3358722267925888
+    position:
+    - -0.057188890082131676
+    - -0.14557499002421873
+    - -0.005248079203045895
+  grasp_92:
+    confidence: 0.9588052034378052
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.8288461377826254
+      xyz:
+      - -0.08505494872396877
+      - 0.4933305478329071
+      - 0.2498093396077728
+    position:
+    - -0.07139300848294383
+    - -0.10202974389995115
+    - -0.05401849503254049
+  grasp_93:
+    confidence: 0.9585094451904297
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.28414118684644657
+      xyz:
+      - 0.908068680287812
+      - -0.2724752808488839
+      - 0.14294152351282033
+    position:
+    - -0.012772426148246578
+    - 0.10828823287283404
+    - 0.08086570223236925
+  grasp_94:
+    confidence: 0.9582246541976929
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.06486730008835946
+      xyz:
+      - -0.23848639373096084
+      - 0.06504390863210097
+      - -0.9667914787245004
+    position:
+    - -0.059392838877927116
+    - 0.03582228411232455
+    - -0.0863380445036804
+  grasp_95:
+    confidence: 0.9582173228263855
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.03677106205734417
+      xyz:
+      - -0.967854482306227
+      - -0.2467500421687332
+      - 0.03193754474985189
+    position:
+    - 0.012116149860132881
+    - -0.06209389429296033
+    - 0.09673283865118867
+  grasp_96:
+    confidence: 0.9576001763343811
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.27124754658803735
+      xyz:
+      - -0.03254555766588361
+      - 0.009471851470514436
+      - -0.9619125943535137
+    position:
+    - -0.0040697190205786155
+    - -0.037286638577828574
+    - -0.10096405575608366
+  grasp_97:
+    confidence: 0.957491397857666
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.5261390001837576
+      xyz:
+      - -0.21972652067333037
+      - 0.7565697618855033
+      - 0.3201565304643042
+    position:
+    - -0.06406186814356929
+    - -0.13246397983039396
+    - 0.023847258290299246
+  grasp_98:
+    confidence: 0.9574635028839111
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.08796628160945294
+      xyz:
+      - -0.7482611486104778
+      - -0.09916048584029524
+      - -0.6500264493294495
+    position:
+    - -0.09982623453189021
+    - -0.05509641330445783
+    - 0.01584299710954077
+  grasp_99:
+    confidence: 0.9569528102874756
+    mesh_id: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    orientation:
+      w: 0.22430806131198555
+      xyz:
+      - 0.372483933474937
+      - -0.29019997487582805
+      - 0.8524820159484692
+    position:
+    - -0.05707212085772639
+    - 0.11309431929384692
+    - -0.0535355148706352

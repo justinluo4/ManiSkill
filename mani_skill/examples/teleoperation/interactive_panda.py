@@ -33,6 +33,7 @@ class Args:
     """the shader to use for the viewer. 'default' is fast but lower-quality shader, 'rt' and 'rt-fast' are the ray tracing shaders"""
     video_saving_shader: str = "rt-fast"
     """the shader to use for the videos of the demonstrations. 'minimal' is the fast shader, 'rt' and 'rt-fast' are the ray tracing shaders"""
+    save_mesh: bool = False
 
 def parse_args() -> Args:
     return tyro.cli(Args)
@@ -115,6 +116,42 @@ def main(args: Args):
         env.close()
         del env
 
+    if args.save_mesh:
+        print(f"Saving meshes to {output_dir}")
+
+        trajectory_data = h5py.File(h5_file_path)
+        with open(json_file_path, "r") as f:
+            json_data = json.load(f)
+        env = gym.make(
+            args.env_id,
+            obs_mode=args.obs_mode,
+            control_mode="pd_joint_pos",
+            render_mode="rgb_array",
+            reward_mode="none",
+            human_render_camera_configs=dict(shader_pack=args.video_saving_shader),
+        )
+        env = RecordEpisode(
+            env,
+            output_dir=output_dir,
+            trajectory_name="trajectory",
+            save_video=True,
+            info_on_video=False,
+            save_trajectory=False,
+            video_fps=30
+        )
+        for episode in json_data["episodes"]:
+            traj_id = f"traj_{episode['episode_id']}"
+            data = trajectory_data[traj_id]
+            env.reset(**episode["reset_kwargs"])
+            env_states_list = trajectory_utils.dict_to_list_of_dicts(data["env_states"])
+
+            env.base_env.set_state_dict(env_states_list[0])
+            for action in np.array(data["actions"]):
+                env.step(action)
+
+        trajectory_data.close()
+        env.close()
+        del env
 
 
 def solve(env: BaseEnv, debug=False, vis=False):
