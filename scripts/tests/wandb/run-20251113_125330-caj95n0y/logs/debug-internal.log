@@ -1,0 +1,14 @@
+{"time":"2025-11-13T12:53:30.461372914-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-13T12:53:30.643425641-08:00","level":"INFO","msg":"stream: created new stream","id":"caj95n0y"}
+{"time":"2025-11-13T12:53:30.643451049-08:00","level":"INFO","msg":"stream: started","id":"caj95n0y"}
+{"time":"2025-11-13T12:53:30.643450591-08:00","level":"INFO","msg":"handler: started","stream_id":"caj95n0y"}
+{"time":"2025-11-13T12:53:30.643475077-08:00","level":"INFO","msg":"sender: started","stream_id":"caj95n0y"}
+{"time":"2025-11-13T12:53:30.64348887-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"caj95n0y"}
+{"time":"2025-11-13T12:53:30.933603464-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-13T13:04:31.638067897-08:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/justinluo4/ManiSkill/caj95n0y/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-11-13T13:06:31.430573989-08:00","level":"INFO","msg":"stream: closing","id":"caj95n0y"}
+{"time":"2025-11-13T13:06:32.185132523-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-13T13:06:32.349163224-08:00","level":"INFO","msg":"handler: closed","stream_id":"caj95n0y"}
+{"time":"2025-11-13T13:06:32.349186929-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"caj95n0y"}
+{"time":"2025-11-13T13:06:32.349198987-08:00","level":"INFO","msg":"sender: closed","stream_id":"caj95n0y"}
+{"time":"2025-11-13T13:06:32.349231379-08:00","level":"INFO","msg":"stream: closed","id":"caj95n0y"}

@@ -1,0 +1,271 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=3.072972059249878
+eval_episode_len_mean=100.0
+eval_reward_mean=0.03072972223162651
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_1.pt
+SPS: 2554
+Epoch: 2, global_step=20480
+SPS: 4551
+Epoch: 3, global_step=40960
+SPS: 6162
+Epoch: 4, global_step=61440
+SPS: 7441
+Epoch: 5, global_step=81920
+SPS: 8538
+Epoch: 6, global_step=102400
+SPS: 9469
+Epoch: 7, global_step=122880
+SPS: 10268
+Epoch: 8, global_step=143360
+SPS: 10957
+Epoch: 9, global_step=163840
+SPS: 11528
+Epoch: 10, global_step=184320
+SPS: 12011
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=6.853682518005371
+eval_episode_len_mean=100.0
+eval_reward_mean=0.06853681802749634
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_11.pt
+SPS: 9193
+Epoch: 12, global_step=225280
+SPS: 9557
+Epoch: 13, global_step=245760
+SPS: 9914
+Epoch: 14, global_step=266240
+SPS: 10244
+Epoch: 15, global_step=286720
+SPS: 10525
+Epoch: 16, global_step=307200
+SPS: 10805
+Epoch: 17, global_step=327680
+SPS: 11055
+Epoch: 18, global_step=348160
+SPS: 11288
+Epoch: 19, global_step=368640
+SPS: 11519
+Epoch: 20, global_step=389120
+SPS: 11720
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=4.961453437805176
+eval_episode_len_mean=100.0
+eval_reward_mean=0.04961453750729561
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_21.pt
+SPS: 10108
+Epoch: 22, global_step=430080
+SPS: 10307
+Epoch: 23, global_step=450560
+SPS: 10502
+Epoch: 24, global_step=471040
+SPS: 10684
+Epoch: 25, global_step=491520
+SPS: 10854
+Epoch: 26, global_step=512000
+SPS: 11017
+Epoch: 27, global_step=532480
+SPS: 11176
+Epoch: 28, global_step=552960
+SPS: 11302
+Epoch: 29, global_step=573440
+SPS: 11431
+Epoch: 30, global_step=593920
+SPS: 11561
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=3.964177370071411
+eval_episode_len_mean=100.0
+eval_reward_mean=0.03964177519083023
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_31.pt
+SPS: 10451
+Epoch: 32, global_step=634880
+SPS: 10591
+Epoch: 33, global_step=655360
+SPS: 10729
+Epoch: 34, global_step=675840
+SPS: 10862
+Epoch: 35, global_step=696320
+SPS: 10980
+Epoch: 36, global_step=716800
+SPS: 11097
+Epoch: 37, global_step=737280
+SPS: 11219
+Epoch: 38, global_step=757760
+SPS: 11330
+Epoch: 39, global_step=778240
+SPS: 11436
+Epoch: 40, global_step=798720
+SPS: 11531
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=4.03279972076416
+eval_episode_len_mean=100.0
+eval_reward_mean=0.040327996015548706
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_41.pt
+SPS: 10665
+Epoch: 42, global_step=839680
+SPS: 10769
+Epoch: 43, global_step=860160
+SPS: 10852
+Epoch: 44, global_step=880640
+SPS: 10930
+Epoch: 45, global_step=901120
+SPS: 11015
+Epoch: 46, global_step=921600
+SPS: 11106
+Epoch: 47, global_step=942080
+SPS: 11187
+Epoch: 48, global_step=962560
+SPS: 11278
+Epoch: 49, global_step=983040
+SPS: 11365
+Epoch: 50, global_step=1003520
+SPS: 11458
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=7.823589324951172
+eval_episode_len_mean=100.0
+eval_reward_mean=0.07823588699102402
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_51.pt
+SPS: 10731
+Epoch: 52, global_step=1044480
+SPS: 10821
+Epoch: 53, global_step=1064960
+SPS: 10900
+Epoch: 54, global_step=1085440
+SPS: 10973
+Epoch: 55, global_step=1105920
+SPS: 11041
+Epoch: 56, global_step=1126400
+SPS: 11104
+Epoch: 57, global_step=1146880
+SPS: 11174
+Epoch: 58, global_step=1167360
+SPS: 11254
+Epoch: 59, global_step=1187840
+SPS: 11321
+Epoch: 60, global_step=1208320
+SPS: 11398
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=9.135769844055176
+eval_episode_len_mean=100.0
+eval_reward_mean=0.09135769307613373
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_61.pt
+SPS: 10822
+Epoch: 62, global_step=1249280
+SPS: 10885
+Epoch: 63, global_step=1269760
+SPS: 10956
+Epoch: 64, global_step=1290240
+SPS: 11020
+Epoch: 65, global_step=1310720
+SPS: 11082
+Epoch: 66, global_step=1331200
+SPS: 11151
+Epoch: 67, global_step=1351680
+SPS: 11209
+Epoch: 68, global_step=1372160
+SPS: 11273
+Epoch: 69, global_step=1392640
+SPS: 11333
+Epoch: 70, global_step=1413120
+SPS: 11393
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=7.439919948577881
+eval_episode_len_mean=100.0
+eval_reward_mean=0.0743992030620575
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_71.pt
+SPS: 10899
+Epoch: 72, global_step=1454080
+SPS: 10987
+Epoch: 73, global_step=1474560
+SPS: 11043
+Epoch: 74, global_step=1495040
+SPS: 11095
+Epoch: 75, global_step=1515520
+SPS: 11150
+Epoch: 76, global_step=1536000
+SPS: 11207
+Epoch: 77, global_step=1556480
+SPS: 11262
+Epoch: 78, global_step=1576960
+SPS: 11315
+Epoch: 79, global_step=1597440
+SPS: 11370
+Epoch: 80, global_step=1617920
+SPS: 11422
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=8.245615005493164
+eval_episode_len_mean=100.0
+eval_reward_mean=0.08245615661144257
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_81.pt
+SPS: 10977
+Epoch: 82, global_step=1658880
+SPS: 11031
+Epoch: 83, global_step=1679360
+SPS: 11084
+Epoch: 84, global_step=1699840
+SPS: 11135
+Epoch: 85, global_step=1720320
+SPS: 11191
+Epoch: 86, global_step=1740800
+SPS: 11245
+Epoch: 87, global_step=1761280
+SPS: 11286
+Epoch: 88, global_step=1781760
+SPS: 11332
+Epoch: 89, global_step=1802240
+SPS: 11379
+Epoch: 90, global_step=1822720
+SPS: 11424
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=7.036908149719238
+eval_episode_len_mean=100.0
+eval_reward_mean=0.07036907970905304
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_normal_1763634001/ckpt_91.pt
+SPS: 11005
+Epoch: 92, global_step=1863680
+SPS: 11048
+Epoch: 93, global_step=1884160
+SPS: 11074
+Epoch: 94, global_step=1904640

@@ -11,7 +11,10 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.widgets import Slider
 import shutil
 import yaml
+import quaternion
 import io
+
+from scipy.spatial.transform import Rotation as R
 def main():
 
 
@@ -299,7 +302,7 @@ def calc_contact_points(mesh_file):
 
     # ---------------------------------------------------------------------------- #
 
-    for _ in range(50):
+    for _ in range(60):
         scene.step()
 
 
@@ -366,6 +369,17 @@ def generate_meshes(mesh_file, depth = 1):
     closest_meshes = get_contact_mesh_ids(mesh_file)
 
     positions = np.array([grasps["grasps"][grasp]["position"] for grasp in grasps["grasps"]])
+
+    quats = quaternion.as_quat_array(np.array([(R.from_euler("X", 90, degrees=True) * R.from_quat(
+                [g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps["grasps"].values()]))
+    offset = np.zeros((len(positions), 3))
+    offset[:,2] += 0.1
+    offset = quaternion.from_vector_part(offset)
+    # print(quats, quats.conj())
+    # print(quats * offset * quats.conj())
+    offset = quaternion.as_vector_part(quats * offset * quats.conj())
+    # print(offset)
+    positions += offset
     dist_array = np.zeros((len(cc), len(grasps["grasps"])))
     for n, m in enumerate(cc):
         proximity_query = trimesh.proximity.ProximityQuery(m)

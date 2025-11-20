@@ -1,0 +1,179 @@
+####
+args.num_iterations=976 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=2.5232582092285156
+eval_episode_len_mean=100.0
+eval_reward_mean=0.0252325851470232
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_decomp_1763033934/ckpt_1.pt
+SPS: 2578
+Epoch: 2, global_step=20480
+SPS: 4562
+Epoch: 3, global_step=40960
+SPS: 6103
+Epoch: 4, global_step=61440
+SPS: 7311
+Epoch: 5, global_step=81920
+SPS: 8232
+Epoch: 6, global_step=102400
+SPS: 9078
+Epoch: 7, global_step=122880
+SPS: 9651
+Epoch: 8, global_step=143360
+SPS: 10042
+Epoch: 9, global_step=163840
+SPS: 10360
+Epoch: 10, global_step=184320
+SPS: 10624
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.374002456665039
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11374003440141678
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_decomp_1763033934/ckpt_11.pt
+SPS: 8099
+Epoch: 12, global_step=225280
+SPS: 8404
+Epoch: 13, global_step=245760
+SPS: 8636
+Epoch: 14, global_step=266240
+SPS: 8827
+Epoch: 15, global_step=286720
+SPS: 9007
+Epoch: 16, global_step=307200
+SPS: 9240
+Epoch: 17, global_step=327680
+SPS: 9399
+Epoch: 18, global_step=348160
+SPS: 9512
+Epoch: 19, global_step=368640
+SPS: 9614
+Epoch: 20, global_step=389120
+SPS: 9722
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.677504539489746
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11677505075931549
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_decomp_1763033934/ckpt_21.pt
+SPS: 8438
+Epoch: 22, global_step=430080
+SPS: 8566
+Epoch: 23, global_step=450560
+SPS: 8673
+Epoch: 24, global_step=471040
+SPS: 8774
+Epoch: 25, global_step=491520
+SPS: 8883
+Epoch: 26, global_step=512000
+SPS: 9016
+Epoch: 27, global_step=532480
+SPS: 9107
+Epoch: 28, global_step=552960
+SPS: 9188
+Epoch: 29, global_step=573440
+SPS: 9265
+Epoch: 30, global_step=593920
+SPS: 9355
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.551864624023438
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11551864445209503
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_decomp_1763033934/ckpt_31.pt
+SPS: 8492
+Epoch: 32, global_step=634880
+SPS: 8576
+Epoch: 33, global_step=655360
+SPS: 8649
+Epoch: 34, global_step=675840
+SPS: 8725
+Epoch: 35, global_step=696320
+SPS: 8804
+Epoch: 36, global_step=716800
+SPS: 8895
+Epoch: 37, global_step=737280
+SPS: 8962
+Epoch: 38, global_step=757760
+SPS: 9020
+Epoch: 39, global_step=778240
+SPS: 9083
+Epoch: 40, global_step=798720
+SPS: 9146
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.345205307006836
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11345205456018448
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_decomp_1763033934/ckpt_41.pt
+SPS: 8509
+Epoch: 42, global_step=839680
+SPS: 8566
+Epoch: 43, global_step=860160
+SPS: 8621
+Epoch: 44, global_step=880640
+SPS: 8680
+Epoch: 45, global_step=901120
+SPS: 8740
+Epoch: 46, global_step=921600
+SPS: 8814
+Epoch: 47, global_step=942080
+SPS: 8866
+Epoch: 48, global_step=962560
+SPS: 8910
+Epoch: 49, global_step=983040
+SPS: 8957
+Epoch: 50, global_step=1003520
+SPS: 9009
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=13.533185958862305
+eval_episode_len_mean=100.0
+eval_reward_mean=0.13533185422420502
+eval_success_at_end_mean=0.0
+model saved to runs/002_master_chef_can_decomp_1763033934/ckpt_51.pt
+SPS: 8525
+Epoch: 52, global_step=1044480
+SPS: 8575
+Epoch: 53, global_step=1064960
+SPS: 8620
+Epoch: 54, global_step=1085440
+SPS: 8662
+Epoch: 55, global_step=1105920
+SPS: 8711
+Epoch: 56, global_step=1126400
+Traceback (most recent call last):
+  File "/home/jluo/PycharmProjects/ManiSkill/examples/baselines/ppo/ppo.py", line 444, in <module>
+    nn.utils.clip_grad_norm_(agent.parameters(), args.max_grad_norm)
+  File "/home/jluo/anaconda3/envs/ManiSkill/lib/python3.12/site-packages/torch/nn/utils/clip_grad.py", line 38, in _no_grad_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jluo/anaconda3/envs/ManiSkill/lib/python3.12/site-packages/torch/nn/utils/clip_grad.py", line 219, in clip_grad_norm_
+    total_norm = _get_total_norm(grads, norm_type, error_if_nonfinite, foreach)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jluo/anaconda3/envs/ManiSkill/lib/python3.12/site-packages/torch/nn/utils/clip_grad.py", line 38, in _no_grad_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jluo/anaconda3/envs/ManiSkill/lib/python3.12/site-packages/torch/nn/utils/clip_grad.py", line 91, in _get_total_norm
+    norms.extend(torch._foreach_norm(device_tensors, norm_type))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

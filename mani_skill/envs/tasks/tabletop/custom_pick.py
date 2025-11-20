@@ -36,10 +36,10 @@ class CustomPickEnv(BaseEnv):
     - the cube position is within `goal_thresh` (default 0.025m) euclidean distance of the goal position
     - the robot is static (q velocity < 0.2)
     """
-    object_name = "072-a_toy_airplane"
     _sample_video_link = "https://github.com/haosulab/ManiSkill/raw/main/figures/environment_demos/PickCube-v1_rt.mp4"
     SUPPORTED_ROBOTS = [
         "panda",
+        "panda_no_collision",
         "fetch",
         "xarm6_robotiq",
     ]
@@ -48,15 +48,17 @@ class CustomPickEnv(BaseEnv):
     bar_thickness = 0.007
     bar_length = 0.05
     goal_thresh = 0.025
-    starting_offset = 0.1
+    starting_offset = 0.04
     # Define target grasp (sample multiple if there are degrees of freedom)
 
 
-    def __init__(self, *args, robot_uids="panda", robot_init_qpos_noise=0.02, **kwargs):
+    def __init__(self, *args, robot_uids="panda_no_collision", robot_init_qpos_noise=0.02, **kwargs):
         self.asset_root = Path(f"{ASSET_DIR}/tasks/grasping/")
         self.robot_init_qpos_noise = robot_init_qpos_noise
         self.target_grasp = None
-        self.use_decomp = True
+        self.use_decomp = kwargs.pop("use_decomp", False)
+        self.object_name = kwargs.pop("object_name", None)
+        self.guide_traj = False
 
         super().__init__(*args, robot_uids=robot_uids, **kwargs)
 
@@ -82,8 +84,8 @@ class CustomPickEnv(BaseEnv):
     def _load_agent(self, options: dict):
         super()._load_agent(options, sapien.Pose(p=[-0.615, 0, 0]))
 
-    def reset(self, seed: Union[None, int, list[int]] = None, options: Union[None, dict] = None):
-        return super().reset(options = {"reconfigure": True})
+    # def reset(self, seed: Union[None, int, list[int]] = None, options: Union[None, dict] = None):
+    #     return super().reset(options = {"reconfigure": True})
 
     def _load_scene(self, options: dict):
         self.table_scene = TableSceneBuilder(
@@ -139,8 +141,8 @@ class CustomPickEnv(BaseEnv):
         # )
         b = self.num_envs
 
-        grasp_quats = []
-        grasp_pos = []
+        self.grasp_quats = []
+        self.grasp_pos = []
         if self.object_name is None:
 
             objects = os.listdir(self.asset_root / "mani_skill2_ycb" / "models")
@@ -156,12 +158,12 @@ class CustomPickEnv(BaseEnv):
 
                     g = random.choice(grasps)
                     rot = R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])
-                    while rot.apply([1, 0, 1])[0] > 0:
-                        g = random.choice(grasps)
-                        rot = R.from_euler("X", 90, degrees=True) * R.from_quat(
-                            [g["orientation"]["w"]] + g["orientation"]["xyz"])
-                    grasp_quats.append(rot.as_quat() )
-                    grasp_pos.append(g["position"])
+                    # while rot.apply([0, 0, 1])[2] < 0:
+                    #     g = random.choice(grasps)
+                    #     rot = R.from_euler("X", 90, degrees=True) * R.from_quat(
+                    #         [g["orientation"]["w"]] + g["orientation"]["xyz"])
+                    self.grasp_quats.append(rot.as_quat() )
+                    self.grasp_pos.append(g["position"])
                     if self.use_decomp:
 
                         collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasp_decomp" / f"decomp_{g["mesh_id"]}.ply"))
@@ -177,7 +179,7 @@ class CustomPickEnv(BaseEnv):
                 material=None,
                 density=1000,
             )
-            self.local_grasp = Pose.create_from_pq(torch.tensor(np.array(grasp_pos)),  torch.tensor(np.array(grasp_quats)))
+            self.local_grasp = Pose.create_from_pq(torch.tensor(np.array(self.grasp_pos)),  torch.tensor(np.array(self.grasp_quats)))
             builder.add_visuals_from_files(
                 files = original_files,
                 scale=[1] * 3)
@@ -186,11 +188,18 @@ class CustomPickEnv(BaseEnv):
             with open(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasps.yaml"), 'r') as stream:
                 grasps = yaml.safe_load(stream)["grasps"].values()
             grasp_ids = torch.tensor([g["mesh_id"] for g in grasps])
+            self.grasp_pos = torch.tensor(np.array([g["position"] for g in grasps]))
+            self.grasp_quats = torch.tensor(np.array([(R.from_euler("X", 90, degrees=True) * R.from_quat(
+                [g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps]))
             scores = np.array([g["confidence"] for g in grasps])
             scores /= scores.sum()
             self.selected_grasps = np.random.choice(len(grasp_ids), b, p=scores)
+            self.grasp_pos = self.grasp_pos[self.selected_grasps]
+            self.grasp_quats = self.grasp_quats[self.selected_grasps]
+            self.local_grasp = Pose.create_from_pq(self.grasp_pos, self.grasp_quats)
             if self.use_decomp:
                 builder = self.scene.create_decomposition_builder()
+                builder.auto_inertial = False
                 collision_files = [str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasp_decomp" / f"decomp_{gid}.ply") for gid in grasp_ids[self.selected_grasps]]
                 builder.add_multiple_convex_collisions_from_multiple_files(
                     files=collision_files,
@@ -198,7 +207,12 @@ class CustomPickEnv(BaseEnv):
                     material=None,
                     density=1000,
                 )
-                #builder.match_mass_and_inertia(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "collision_mesh_t=0.04.ply"))
+                builder.match_mass_and_inertia(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj"))
+
+
+                builder.add_visuals_from_files(
+                    files=[str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj")] * b,
+                    scale=[1] * 3)
             else:
                 builder = self.scene.create_actor_builder()
                 builder.add_multiple_convex_collisions_from_file(
@@ -206,9 +220,8 @@ class CustomPickEnv(BaseEnv):
                     scale=[1] * 3,
                     material=None,
                 )
-            builder.add_visuals_from_files(
-                files=[str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj")]*b,
-                scale=[1] * 3)
+                builder.add_visual_from_file(filename = str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj"))
+
         builder.set_initial_pose(sapien.Pose())
         self.cube = builder.build(name="cube")
         self.grasp_vis = build_panda_gripper_grasp_pose_visual(self.scene)
@@ -218,6 +231,15 @@ class CustomPickEnv(BaseEnv):
             radius=self.goal_thresh,
             color=[0, 1, 0, 1],
             name="goal_site",
+            body_type="kinematic",
+            add_collision=False,
+            initial_pose=sapien.Pose(),
+        )
+        self.cmass_marker = actors.build_sphere(
+            self.scene,
+            radius=0.01,
+            color=[1, 1, 0, 1],
+            name="cmass",
             body_type="kinematic",
             add_collision=False,
             initial_pose=sapien.Pose(),
@@ -232,28 +254,32 @@ class CustomPickEnv(BaseEnv):
         with torch.device(self.device):
             b = len(env_idx)
             self.stage = torch.zeros(b)
-            if self.object_name is not None:
-                with open(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasps.yaml"),
-                          'r') as stream:
-                    grasps = yaml.safe_load(stream)["grasps"].values()
-                grasp_pos = torch.tensor([g["position"] for g in grasps])
-                grasp_quats = torch.tensor([(R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps])
-                scores = np.array([g["confidence"] for g in grasps])
-                scores /= scores.sum()
-                grasp_pos = grasp_pos[self.selected_grasps]
-                grasp_quats = grasp_quats[self.selected_grasps]
-                self.local_grasp = Pose.create_from_pq(grasp_pos, grasp_quats)
+            # if self.object_name is not None:
+            #     with open(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasps.yaml"),
+            #               'r') as stream:
+            #         grasps = yaml.safe_load(stream)["grasps"].values()
+            #     grasp_pos = torch.tensor([g["position"] for g in grasps])
+            #     grasp_quats = torch.tensor([(R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps])
+            #     scores = np.array([g["confidence"] for g in grasps])
+            #     scores /= scores.sum()
+            #     grasp_pos = grasp_pos[self.selected_grasps]
+            #     grasp_quats = grasp_quats[self.selected_grasps]
+            #     self.local_grasp = Pose.create_from_pq(grasp_pos, grasp_quats)
             self.table_scene.initialize(env_idx)
 
 
             xyz = torch.zeros((b, 3))
             xyz[:, :2] = torch.rand((b, 2)) * 0.2 - 0.1
+            xyz[:, 0] = xyz[:, 0]/2 - 0.1
             xyz[:, 2] = self.cube_half_size
             qs = randomization.random_quaternions(b, lock_x=True, lock_y=True)
             # qs[:, [0, 2, 1, 3]] = qs[:, [2, 0, 3, 1]]
             self.cube.set_pose(Pose.create_from_pq(xyz, qs))
             offsets = torch.zeros((b, 3))
-            offsets[:, 2] = self.starting_offset
+            if self.guide_traj:
+                offsets[:, 2] = self.starting_offset
+            else:
+                offsets[:, 2] = 0.09
             self.offset = Pose.create_from_pq(offsets)
             # self.local_grasp = Pose.create_from_pq(grasp_pos,  grasp_quats)
             ax = torch.zeros((b, 3))
@@ -263,8 +289,7 @@ class CustomPickEnv(BaseEnv):
             self.target_grasp = self.cube.pose * (self.local_grasp * self.offset)
             # for g in grasps:
             #     grasp_vis = build_panda_gripper_grasp_pose_visual(self.scene)
-            #     print(g["quat"].as_quat())
-            #     grasp_vis.set_pose(self.cube.pose * Pose.create_from_pq(g["pos"], (R.from_euler("Y", 90, degrees=True) * g["quat"]).as_quat()))
+            #     grasp_vis.set_pose(self.cube.pose * Pose.create_from_pq(g["position"], (R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat()))
 
             goal_xyz = torch.zeros((b, 3))
             goal_xyz[:, :2] = torch.rand((b, 2)) * 0.2 - 0.1
@@ -290,19 +315,20 @@ class CustomPickEnv(BaseEnv):
         return obs
 
     def update_grasp(self):
-        grasp_dist = grasp_diff(self.agent.tcp.pose, self.target_grasp)
-        self.stage += 1 * (grasp_dist < 0.1)
-        step = 0.02
-        # self.offset.p[grasp_dist < 0.1, 2] += step
-        # self.offset.p[grasp_dist > 0.5, 2] -= step
+        if self.guide_traj:
+            grasp_dist = grasp_diff(self.agent.tcp.pose, self.target_grasp)
+            self.stage += 1 * (grasp_dist < 0.1)
+            step = 0.02
+            self.offset.p[grasp_dist < 0.1, 2] += step
+            self.offset.p[grasp_dist > 0.5, 2] -= step
 
-        # self.offset.p[:, 2] = torch.clamp(self.offset.p[:, 2], min = self.starting_offset, max=0.08)
+            self.offset.p[:, 2] = torch.clamp(self.offset.p[:, 2], min = self.starting_offset, max=0.12)
         self.target_grasp = self.cube.pose *  (self.local_grasp * self.offset)
         self.grasp_vis.set_pose(self.target_grasp)
 
     def step(self, action: Union[None, np.ndarray, torch.Tensor, Dict]):
         self.update_grasp()
-
+        self.cmass_marker.set_pose(self.cube.pose * self.cube.cmass_local_pose)
 
         return super().step(action)
 
@@ -325,7 +351,7 @@ class CustomPickEnv(BaseEnv):
 
     def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
 
-        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp)* 2
+        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp)
 
 
         # reward += (torch.tanh(diff1).clamp(min = 0) + torch.tanh(diff2).clamp(min = 0) ) * 0.5

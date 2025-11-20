@@ -1,0 +1,13 @@
+{"time":"2025-11-13T04:24:45.05594709-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-13T04:24:45.232057548-08:00","level":"INFO","msg":"stream: created new stream","id":"drdfyaob"}
+{"time":"2025-11-13T04:24:45.232083611-08:00","level":"INFO","msg":"stream: started","id":"drdfyaob"}
+{"time":"2025-11-13T04:24:45.232138831-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"drdfyaob"}
+{"time":"2025-11-13T04:24:45.232146172-08:00","level":"INFO","msg":"handler: started","stream_id":"drdfyaob"}
+{"time":"2025-11-13T04:24:45.232171085-08:00","level":"INFO","msg":"sender: started","stream_id":"drdfyaob"}
+{"time":"2025-11-13T04:24:45.440776716-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-13T04:36:22.924348791-08:00","level":"INFO","msg":"stream: closing","id":"drdfyaob"}
+{"time":"2025-11-13T04:36:23.575890155-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-13T04:36:23.69273857-08:00","level":"INFO","msg":"handler: closed","stream_id":"drdfyaob"}
+{"time":"2025-11-13T04:36:23.692752491-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"drdfyaob"}
+{"time":"2025-11-13T04:36:23.69275651-08:00","level":"INFO","msg":"sender: closed","stream_id":"drdfyaob"}
+{"time":"2025-11-13T04:36:23.692777818-08:00","level":"INFO","msg":"stream: closed","id":"drdfyaob"}

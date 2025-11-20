@@ -1,0 +1,13 @@
+{"time":"2025-11-13T05:23:04.2944505-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-13T05:23:04.469838333-08:00","level":"INFO","msg":"stream: created new stream","id":"clp5napp"}
+{"time":"2025-11-13T05:23:04.469872824-08:00","level":"INFO","msg":"stream: started","id":"clp5napp"}
+{"time":"2025-11-13T05:23:04.469882382-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"clp5napp"}
+{"time":"2025-11-13T05:23:04.46988716-08:00","level":"INFO","msg":"handler: started","stream_id":"clp5napp"}
+{"time":"2025-11-13T05:23:04.469903106-08:00","level":"INFO","msg":"sender: started","stream_id":"clp5napp"}
+{"time":"2025-11-13T05:23:04.800299057-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-13T05:48:36.437827465-08:00","level":"INFO","msg":"stream: closing","id":"clp5napp"}
+{"time":"2025-11-13T05:48:37.077635759-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-13T05:48:37.188931328-08:00","level":"INFO","msg":"handler: closed","stream_id":"clp5napp"}
+{"time":"2025-11-13T05:48:37.188949825-08:00","level":"INFO","msg":"sender: closed","stream_id":"clp5napp"}
+{"time":"2025-11-13T05:48:37.188942115-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"clp5napp"}
+{"time":"2025-11-13T05:48:37.188982589-08:00","level":"INFO","msg":"stream: closed","id":"clp5napp"}

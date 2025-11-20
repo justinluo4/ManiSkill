@@ -1,0 +1,13 @@
+{"time":"2025-11-13T11:26:36.052595388-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-13T11:26:36.236361666-08:00","level":"INFO","msg":"stream: created new stream","id":"sd4amjiz"}
+{"time":"2025-11-13T11:26:36.236380435-08:00","level":"INFO","msg":"stream: started","id":"sd4amjiz"}
+{"time":"2025-11-13T11:26:36.236409504-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"sd4amjiz"}
+{"time":"2025-11-13T11:26:36.236691831-08:00","level":"INFO","msg":"sender: started","stream_id":"sd4amjiz"}
+{"time":"2025-11-13T11:26:36.236717468-08:00","level":"INFO","msg":"handler: started","stream_id":"sd4amjiz"}
+{"time":"2025-11-13T11:26:36.561951744-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-13T11:40:11.276634367-08:00","level":"INFO","msg":"stream: closing","id":"sd4amjiz"}
+{"time":"2025-11-13T11:40:11.935893792-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-13T11:40:12.068104919-08:00","level":"INFO","msg":"handler: closed","stream_id":"sd4amjiz"}
+{"time":"2025-11-13T11:40:12.068130161-08:00","level":"INFO","msg":"sender: closed","stream_id":"sd4amjiz"}
+{"time":"2025-11-13T11:40:12.068126901-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"sd4amjiz"}
+{"time":"2025-11-13T11:40:12.068167326-08:00","level":"INFO","msg":"stream: closed","id":"sd4amjiz"}

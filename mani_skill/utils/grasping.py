@@ -9,7 +9,7 @@ from mani_skill import ASSET_DIR
 from matplotlib.widgets import Slider
 import numpy as np
 
-def grasp_diff(cur_pose, target_pose, reach_weight = 1, orient_weight = 1, symmetric = True):
+def grasp_diff(cur_pose, target_pose, reach_weight = 1, orient_weight = 0.5, symmetric = True):
 
     rot_diff = torch.acos(torch.sum(cur_pose.q * target_pose.q, axis=1)**2 * 2 - 1)/torch.pi
     if symmetric:

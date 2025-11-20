@@ -12,7 +12,7 @@ from mani_skill import logger
 from mani_skill.utils import common
 from mani_skill.utils.structs.actor import Actor
 from mani_skill.utils.structs.pose import Pose, to_sapien_pose
-
+import trimesh
 if TYPE_CHECKING:
     from mani_skill.envs.scene import ManiSkillScene
 
@@ -58,26 +58,43 @@ class DecompositionBuilder(ActorBuilder):
             self.add_visual_from_file(file, pose, scale, material, name)
 
         return self
-    def match_mass_and_inertia(self, file):
-        self.add_multiple_convex_collisions_from_file(file, sapien.Pose(), (1, 1, 1), None, 1000, 0,
-                                                      0, False, "none", dict())
-        self.base_cr = self.collision_records.pop(-1)
-        component = physx.PhysxRigidDynamicComponent()
-        r = self.base_cr
-        shapes = physx.PhysxCollisionShapeConvexMesh.load_multiple(
-            filename=r.filename,
-            scale=r.scale,
-            material=r.material,
-        )
 
-        for shape in shapes:
-            shape.local_pose = r.pose
-            shape.set_collision_groups(self.collision_groups)
-            shape.set_density(r.density)
-            shape.set_patch_radius(r.patch_radius)
-            shape.set_min_patch_radius(r.min_patch_radius)
-            component.attach(shape)
-        self.set_mass_and_inertia(component.mass, component.cmass_local_pose, component.inertia)
+    def match_mass_and_inertia(self, file):
+        # self.add_multiple_convex_collisions_from_file(file, sapien.Pose(), (1, 1, 1), None, 1000, 0,
+        #                                               0, False, "none", dict())
+        # self.base_cr = self.collision_records.pop(-1)
+        # component = physx.PhysxRigidDynamicComponent()
+        # r = self.base_cr
+        # shapes = physx.PhysxCollisionShapeConvexMesh.load_multiple(
+        #     filename=r.filename,
+        #     scale=r.scale,
+        #     material=r.material,
+        # )
+        #
+        # for shape in shapes:
+        #     shape.local_pose = r.pose
+        #     shape.set_collision_groups(self.collision_groups)
+        #     shape.set_density(r.density)
+        #     shape.set_patch_radius(r.patch_radius)
+        #     shape.set_min_patch_radius(r.min_patch_radius)
+        #     component.attach(shape)
+        # self.set_mass_and_inertia(component.mass, component.cmass_local_pose, component.inertia)
+        vis_mesh = trimesh.load_mesh(file)
+
+        vis_mesh.fill_holes()
+        mat = np.identity(4)
+        scale = 100
+        mat[:3, :3] *= scale
+        vis_mesh.apply_transform(mat)
+        density = 1000
+        # print(file)
+        # print(vis_mesh.mass, vis_mesh.moment_inertia, vis_mesh.center_mass)
+
+        mass = float(vis_mesh.mass) * density / (scale ** 3)
+        cmass_local_pose = sapien.Pose()
+
+        inertia = np.diag(vis_mesh.moment_inertia.astype(np.float32)) / (scale ** 5) * density
+        self.set_mass_and_inertia(mass, cmass_local_pose, inertia)
 
 
 
@@ -169,33 +186,29 @@ class DecompositionBuilder(ActorBuilder):
                 shape.set_patch_radius(r.patch_radius)
                 shape.set_min_patch_radius(r.min_patch_radius)
                 component.attach(shape)
-            if self.visual_records:
-                self.add_nonconvex_collision_from_file(self.visual_records[i].filename)
-                self.base_cr = self.collision_records.pop(-1)
-                mass_component = physx.PhysxRigidDynamicComponent()
-                mr = self.base_cr
-                mass_shape = physx.PhysxCollisionShapeTriangleMesh(
-                    filename=mr.filename,
-                    scale=mr.scale,
-                    material=mr.material,
-                )
-
-                mass_shape.local_pose = mr.pose
-                mass_shape.set_density(mr.density)
-                mass_shape.set_patch_radius(mr.patch_radius)
-                mass_shape.set_min_patch_radius(mr.min_patch_radius)
-                mass_component.attach(mass_shape)
-
-                component.mass = mass_component.mass
-                component.cmass_local_pose = mass_component.cmass_local_pose
-                component.inertia = mass_component.inertia
-
+            # if self.visual_records[i] is not None:
+            #     vis_mesh = trimesh.load_mesh(self.visual_records[i].filename)
+            #
+            #     vis_mesh.fill_holes()
+            #     mat = np.identity(4)
+            #     scale = 100
+            #     mat[:3, :3] *= scale
+            #     vis_mesh.apply_transform(mat)
+            #     print(self.visual_records[i].filename)
+            #     print(vis_mesh.mass, vis_mesh.moment_inertia)
+            #
+            #     component.mass = float(vis_mesh.mass) * self.collision_records[i].density * 1.25 / (scale ** 3)
+            #     component.cmass_local_pose = sapien.Pose(p=vis_mesh.center_mass)
+            #
+            #
+            #     component.inertia = np.diag(vis_mesh.moment_inertia.astype(np.float32))/(scale**5)*self.collision_records[i].density* 1.25
+            #
             # else:
-            #     if hasattr(self, "_auto_inertial"):
-            #         if not self._auto_inertial and self.physx_body_type != "kinematic":
-            #             component.mass = self._mass
-            #             component.cmass_local_pose = self._cmass_local_pose
-            #             component.inertia = self._inertia
+            if hasattr(self, "_auto_inertial"):
+                if not self._auto_inertial and self.physx_body_type != "kinematic":
+                    component.mass = self._mass
+                    component.cmass_local_pose = self._cmass_local_pose
+                    component.inertia = self._inertia
             entity.add_component(component)
             entity.name = self.name
             # prepend scene idx to entity name to indicate which sub-scene it is in
