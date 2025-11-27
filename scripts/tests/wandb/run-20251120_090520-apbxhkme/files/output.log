@@ -1,0 +1,279 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=6.090766429901123
+eval_episode_len_mean=100.0
+eval_reward_mean=0.06090766564011574
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_1.pt
+SPS: 2633
+Epoch: 2, global_step=20480
+SPS: 4742
+Epoch: 3, global_step=40960
+SPS: 6477
+Epoch: 4, global_step=61440
+SPS: 7923
+Epoch: 5, global_step=81920
+SPS: 9113
+Epoch: 6, global_step=102400
+SPS: 10161
+Epoch: 7, global_step=122880
+SPS: 11059
+Epoch: 8, global_step=143360
+SPS: 11862
+Epoch: 9, global_step=163840
+SPS: 12559
+Epoch: 10, global_step=184320
+SPS: 13194
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=8.526121139526367
+eval_episode_len_mean=100.0
+eval_reward_mean=0.08526121079921722
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_11.pt
+SPS: 10048
+Epoch: 12, global_step=225280
+SPS: 10564
+Epoch: 13, global_step=245760
+SPS: 11034
+Epoch: 14, global_step=266240
+SPS: 11443
+Epoch: 15, global_step=286720
+SPS: 11819
+Epoch: 16, global_step=307200
+SPS: 12194
+Epoch: 17, global_step=327680
+SPS: 12536
+Epoch: 18, global_step=348160
+SPS: 12860
+Epoch: 19, global_step=368640
+SPS: 13157
+Epoch: 20, global_step=389120
+SPS: 13435
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.016998291015625
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11016998440027237
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_21.pt
+SPS: 11402
+Epoch: 22, global_step=430080
+SPS: 11664
+Epoch: 23, global_step=450560
+SPS: 11910
+Epoch: 24, global_step=471040
+SPS: 12140
+Epoch: 25, global_step=491520
+SPS: 12364
+Epoch: 26, global_step=512000
+SPS: 12569
+Epoch: 27, global_step=532480
+SPS: 12778
+Epoch: 28, global_step=552960
+SPS: 12970
+Epoch: 29, global_step=573440
+SPS: 13147
+Epoch: 30, global_step=593920
+SPS: 13306
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.199653625488281
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11199653893709183
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_31.pt
+SPS: 11890
+Epoch: 32, global_step=634880
+SPS: 12047
+Epoch: 33, global_step=655360
+SPS: 12214
+Epoch: 34, global_step=675840
+SPS: 12361
+Epoch: 35, global_step=696320
+SPS: 12504
+Epoch: 36, global_step=716800
+SPS: 12650
+Epoch: 37, global_step=737280
+SPS: 12794
+Epoch: 38, global_step=757760
+SPS: 12929
+Epoch: 39, global_step=778240
+SPS: 13057
+Epoch: 40, global_step=798720
+SPS: 13180
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=12.096519470214844
+eval_episode_len_mean=100.0
+eval_reward_mean=0.12096519768238068
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_41.pt
+SPS: 12084
+Epoch: 42, global_step=839680
+SPS: 12221
+Epoch: 43, global_step=860160
+SPS: 12352
+Epoch: 44, global_step=880640
+SPS: 12480
+Epoch: 45, global_step=901120
+SPS: 12605
+Epoch: 46, global_step=921600
+SPS: 12716
+Epoch: 47, global_step=942080
+SPS: 12836
+Epoch: 48, global_step=962560
+SPS: 12955
+Epoch: 49, global_step=983040
+SPS: 13067
+Epoch: 50, global_step=1003520
+SPS: 13169
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=12.916135787963867
+eval_episode_len_mean=100.0
+eval_reward_mean=0.12916135787963867
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_51.pt
+SPS: 12287
+Epoch: 52, global_step=1044480
+SPS: 12390
+Epoch: 53, global_step=1064960
+SPS: 12495
+Epoch: 54, global_step=1085440
+SPS: 12595
+Epoch: 55, global_step=1105920
+SPS: 12697
+Epoch: 56, global_step=1126400
+SPS: 12788
+Epoch: 57, global_step=1146880
+SPS: 12875
+Epoch: 58, global_step=1167360
+SPS: 12963
+Epoch: 59, global_step=1187840
+SPS: 13039
+Epoch: 60, global_step=1208320
+SPS: 13121
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.324155807495117
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15324154496192932
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_61.pt
+SPS: 12380
+Epoch: 62, global_step=1249280
+SPS: 12459
+Epoch: 63, global_step=1269760
+SPS: 12537
+Epoch: 64, global_step=1290240
+SPS: 12617
+Epoch: 65, global_step=1310720
+SPS: 12692
+Epoch: 66, global_step=1331200
+SPS: 12767
+Epoch: 67, global_step=1351680
+SPS: 12838
+Epoch: 68, global_step=1372160
+SPS: 12907
+Epoch: 69, global_step=1392640
+SPS: 12976
+Epoch: 70, global_step=1413120
+SPS: 13043
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=14.274297714233398
+eval_episode_len_mean=100.0
+eval_reward_mean=0.14274297654628754
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_71.pt
+SPS: 12382
+Epoch: 72, global_step=1454080
+SPS: 12450
+Epoch: 73, global_step=1474560
+SPS: 12515
+Epoch: 74, global_step=1495040
+SPS: 12580
+Epoch: 75, global_step=1515520
+SPS: 12645
+Epoch: 76, global_step=1536000
+SPS: 12703
+Epoch: 77, global_step=1556480
+SPS: 12764
+Epoch: 78, global_step=1576960
+SPS: 12825
+Epoch: 79, global_step=1597440
+SPS: 12883
+Epoch: 80, global_step=1617920
+SPS: 12943
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=14.191102027893066
+eval_episode_len_mean=100.0
+eval_reward_mean=0.14191101491451263
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_81.pt
+SPS: 12386
+Epoch: 82, global_step=1658880
+SPS: 12444
+Epoch: 83, global_step=1679360
+SPS: 12501
+Epoch: 84, global_step=1699840
+SPS: 12557
+Epoch: 85, global_step=1720320
+SPS: 12607
+Epoch: 86, global_step=1740800
+SPS: 12661
+Epoch: 87, global_step=1761280
+SPS: 12746
+Epoch: 88, global_step=1781760
+SPS: 12824
+Epoch: 89, global_step=1802240
+SPS: 12877
+Epoch: 90, global_step=1822720
+SPS: 12928
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.260251998901367
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1626025140285492
+eval_success_at_end_mean=0.0
+model saved to runs/053_mini_soccer_ball_normal_1763658317/ckpt_91.pt
+SPS: 12436
+Epoch: 92, global_step=1863680
+SPS: 12488
+Epoch: 93, global_step=1884160
+SPS: 12538
+Epoch: 94, global_step=1904640
+SPS: 12585
+Epoch: 95, global_step=1925120
+SPS: 12632
+Epoch: 96, global_step=1945600
+SPS: 12680
+Epoch: 97, global_step=1966080
+SPS: 12726
+model saved to runs/053_mini_soccer_ball_normal_1763658317/final_ckpt.pt

@@ -42,8 +42,17 @@ COPY nvidia_icd.json /usr/share/vulkan/icd.d/nvidia_icd.json
 COPY nvidia_layers.json /etc/vulkan/implicit_layer.d/nvidia_layers.json
 
 # install dependencies
-RUN pip install --upgrade mani-skill==3.0.0b21 && pip cache purge
-RUN pip install torch 
+# RUN pip install --upgrade mani-skill==3.0.0b21 && pip cache purge
+# RUN pip install torch 
+# pull ManiSkill repo and install
+ARG MANISKILL_REPO=https://github.com/justinluo4/ManiSkill.git
+ARG MANISKILL_REF=main
+RUN git clone --depth 1 --branch "${MANISKILL_REF}" "${MANISKILL_REPO}" /opt/ManiSkill
+WORKDIR /opt/ManiSkill
+RUN pip install --upgrade pip && \
+    pip install -e . && \
+    pip install torch && \
+    pip cache purge
 
 # download physx GPU binary via sapien
 RUN python -c "exec('import sapien.physx as physx;\ntry:\n  physx.enable_gpu()\nexcept:\n  pass;')"

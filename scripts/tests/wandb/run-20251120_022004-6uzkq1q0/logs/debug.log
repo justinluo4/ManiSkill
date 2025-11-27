@@ -19,3 +19,4 @@ config: {'exp_name': None, 'seed': 1, 'torch_deterministic': True, 'cuda': True,
 2025-11-20 02:20:05,665 INFO    MainThread:1484890 [wandb_run.py:_redirect():2375] Wrapping output streams.
 2025-11-20 02:20:05,665 INFO    MainThread:1484890 [wandb_run.py:_redirect():2398] Redirects installed.
 2025-11-20 02:20:05,666 INFO    MainThread:1484890 [wandb_init.py:init():1075] run started, returning control to user process
+2025-11-20 02:23:04,104 INFO    MsgRouterThr:1484890 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

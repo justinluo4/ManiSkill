@@ -1,0 +1,13 @@
+{"time":"2025-11-20T07:50:24.566179585-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-20T07:50:24.741690285-08:00","level":"INFO","msg":"stream: created new stream","id":"y450gsvd"}
+{"time":"2025-11-20T07:50:24.74171596-08:00","level":"INFO","msg":"stream: started","id":"y450gsvd"}
+{"time":"2025-11-20T07:50:24.741789701-08:00","level":"INFO","msg":"handler: started","stream_id":"y450gsvd"}
+{"time":"2025-11-20T07:50:24.741794522-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"y450gsvd"}
+{"time":"2025-11-20T07:50:24.741809139-08:00","level":"INFO","msg":"sender: started","stream_id":"y450gsvd"}
+{"time":"2025-11-20T07:50:25.035255306-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-20T07:53:33.347297557-08:00","level":"INFO","msg":"stream: closing","id":"y450gsvd"}
+{"time":"2025-11-20T07:53:33.697230967-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-20T07:53:33.846776062-08:00","level":"INFO","msg":"handler: closed","stream_id":"y450gsvd"}
+{"time":"2025-11-20T07:53:33.846799453-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"y450gsvd"}
+{"time":"2025-11-20T07:53:33.846814273-08:00","level":"INFO","msg":"sender: closed","stream_id":"y450gsvd"}
+{"time":"2025-11-20T07:53:33.846925142-08:00","level":"INFO","msg":"stream: closed","id":"y450gsvd"}

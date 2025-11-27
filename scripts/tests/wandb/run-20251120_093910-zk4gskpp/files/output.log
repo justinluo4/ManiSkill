@@ -1,0 +1,279 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=5.776816368103027
+eval_episode_len_mean=100.0
+eval_reward_mean=0.057768166065216064
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_1.pt
+SPS: 2468
+Epoch: 2, global_step=20480
+SPS: 4288
+Epoch: 3, global_step=40960
+SPS: 5675
+Epoch: 4, global_step=61440
+SPS: 6765
+Epoch: 5, global_step=81920
+SPS: 7628
+Epoch: 6, global_step=102400
+SPS: 8290
+Epoch: 7, global_step=122880
+SPS: 8901
+Epoch: 8, global_step=143360
+SPS: 9425
+Epoch: 9, global_step=163840
+SPS: 9861
+Epoch: 10, global_step=184320
+SPS: 10204
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.16057014465332
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11160571128129959
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_11.pt
+SPS: 8093
+Epoch: 12, global_step=225280
+SPS: 8407
+Epoch: 13, global_step=245760
+SPS: 8714
+Epoch: 14, global_step=266240
+SPS: 8995
+Epoch: 15, global_step=286720
+SPS: 9238
+Epoch: 16, global_step=307200
+SPS: 9425
+Epoch: 17, global_step=327680
+SPS: 9612
+Epoch: 18, global_step=348160
+SPS: 9788
+Epoch: 19, global_step=368640
+SPS: 9955
+Epoch: 20, global_step=389120
+SPS: 10114
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.037371635437012
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15037372708320618
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_21.pt
+SPS: 8905
+Epoch: 22, global_step=430080
+SPS: 9086
+Epoch: 23, global_step=450560
+SPS: 9253
+Epoch: 24, global_step=471040
+SPS: 9405
+Epoch: 25, global_step=491520
+SPS: 9540
+Epoch: 26, global_step=512000
+SPS: 9661
+Epoch: 27, global_step=532480
+SPS: 9799
+Epoch: 28, global_step=552960
+SPS: 9933
+Epoch: 29, global_step=573440
+SPS: 10050
+Epoch: 30, global_step=593920
+SPS: 10172
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=12.736480712890625
+eval_episode_len_mean=100.0
+eval_reward_mean=0.12736481428146362
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_31.pt
+SPS: 9312
+Epoch: 32, global_step=634880
+SPS: 9417
+Epoch: 33, global_step=655360
+SPS: 9526
+Epoch: 34, global_step=675840
+SPS: 9632
+Epoch: 35, global_step=696320
+SPS: 9721
+Epoch: 36, global_step=716800
+SPS: 9810
+Epoch: 37, global_step=737280
+SPS: 9910
+Epoch: 38, global_step=757760
+SPS: 10005
+Epoch: 39, global_step=778240
+SPS: 10098
+Epoch: 40, global_step=798720
+SPS: 10191
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=14.763692855834961
+eval_episode_len_mean=100.0
+eval_reward_mean=0.14763692021369934
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_41.pt
+SPS: 9515
+Epoch: 42, global_step=839680
+SPS: 9602
+Epoch: 43, global_step=860160
+SPS: 9692
+Epoch: 44, global_step=880640
+SPS: 9777
+Epoch: 45, global_step=901120
+SPS: 9849
+Epoch: 46, global_step=921600
+SPS: 9908
+Epoch: 47, global_step=942080
+SPS: 9984
+Epoch: 48, global_step=962560
+SPS: 10061
+Epoch: 49, global_step=983040
+SPS: 10135
+Epoch: 50, global_step=1003520
+SPS: 10205
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.05301856994629
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1605301946401596
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_51.pt
+SPS: 9655
+Epoch: 52, global_step=1044480
+SPS: 9719
+Epoch: 53, global_step=1064960
+SPS: 9781
+Epoch: 54, global_step=1085440
+SPS: 9844
+Epoch: 55, global_step=1105920
+SPS: 9902
+Epoch: 56, global_step=1126400
+SPS: 9945
+Epoch: 57, global_step=1146880
+SPS: 10001
+Epoch: 58, global_step=1167360
+SPS: 10056
+Epoch: 59, global_step=1187840
+SPS: 10103
+Epoch: 60, global_step=1208320
+SPS: 10151
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.260478973388672
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1726047843694687
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_61.pt
+SPS: 9682
+Epoch: 62, global_step=1249280
+SPS: 9727
+Epoch: 63, global_step=1269760
+SPS: 9791
+Epoch: 64, global_step=1290240
+SPS: 9832
+Epoch: 65, global_step=1310720
+SPS: 9868
+Epoch: 66, global_step=1331200
+SPS: 9908
+Epoch: 67, global_step=1351680
+SPS: 9954
+Epoch: 68, global_step=1372160
+SPS: 9999
+Epoch: 69, global_step=1392640
+SPS: 10044
+Epoch: 70, global_step=1413120
+SPS: 10086
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.122904777526855
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15122905373573303
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_71.pt
+SPS: 9672
+Epoch: 72, global_step=1454080
+SPS: 9722
+Epoch: 73, global_step=1474560
+SPS: 9760
+Epoch: 74, global_step=1495040
+SPS: 9797
+Epoch: 75, global_step=1515520
+SPS: 9832
+Epoch: 76, global_step=1536000
+SPS: 9886
+Epoch: 77, global_step=1556480
+SPS: 9924
+Epoch: 78, global_step=1576960
+SPS: 9959
+Epoch: 79, global_step=1597440
+SPS: 10019
+Epoch: 80, global_step=1617920
+SPS: 10068
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.793190002441406
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1679319143295288
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_81.pt
+SPS: 9705
+Epoch: 82, global_step=1658880
+SPS: 9741
+Epoch: 83, global_step=1679360
+SPS: 9792
+Epoch: 84, global_step=1699840
+SPS: 9826
+Epoch: 85, global_step=1720320
+SPS: 9873
+Epoch: 86, global_step=1740800
+SPS: 9899
+Epoch: 87, global_step=1761280
+SPS: 9927
+Epoch: 88, global_step=1781760
+SPS: 9979
+Epoch: 89, global_step=1802240
+SPS: 10030
+Epoch: 90, global_step=1822720
+SPS: 10059
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.671372413635254
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15671372413635254
+eval_success_at_end_mean=0.0
+model saved to runs/059_chain_normal_1763660346/ckpt_91.pt
+SPS: 9733
+Epoch: 92, global_step=1863680
+SPS: 9777
+Epoch: 93, global_step=1884160
+SPS: 9813
+Epoch: 94, global_step=1904640
+SPS: 9842
+Epoch: 95, global_step=1925120
+SPS: 9870
+Epoch: 96, global_step=1945600
+SPS: 9888
+Epoch: 97, global_step=1966080
+SPS: 9912
+model saved to runs/059_chain_normal_1763660346/final_ckpt.pt

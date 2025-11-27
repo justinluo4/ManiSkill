@@ -1,0 +1,279 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=6.547209739685059
+eval_episode_len_mean=100.0
+eval_reward_mean=0.06547209620475769
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_1.pt
+SPS: 1376
+Epoch: 2, global_step=20480
+SPS: 2205
+Epoch: 3, global_step=40960
+SPS: 2773
+Epoch: 4, global_step=61440
+SPS: 3148
+Epoch: 5, global_step=81920
+SPS: 3433
+Epoch: 6, global_step=102400
+SPS: 3651
+Epoch: 7, global_step=122880
+SPS: 3804
+Epoch: 8, global_step=143360
+SPS: 3981
+Epoch: 9, global_step=163840
+SPS: 4101
+Epoch: 10, global_step=184320
+SPS: 4220
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.521504402160645
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11521504074335098
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_11.pt
+SPS: 3630
+Epoch: 12, global_step=225280
+SPS: 3731
+Epoch: 13, global_step=245760
+SPS: 3842
+Epoch: 14, global_step=266240
+SPS: 3923
+Epoch: 15, global_step=286720
+SPS: 4022
+Epoch: 16, global_step=307200
+SPS: 4087
+Epoch: 17, global_step=327680
+SPS: 4149
+Epoch: 18, global_step=348160
+SPS: 4256
+Epoch: 19, global_step=368640
+SPS: 4391
+Epoch: 20, global_step=389120
+SPS: 4442
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.333881378173828
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1633388102054596
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_21.pt
+SPS: 4061
+Epoch: 22, global_step=430080
+SPS: 4125
+Epoch: 23, global_step=450560
+SPS: 4170
+Epoch: 24, global_step=471040
+SPS: 4227
+Epoch: 25, global_step=491520
+SPS: 4266
+Epoch: 26, global_step=512000
+SPS: 4317
+Epoch: 27, global_step=532480
+SPS: 4354
+Epoch: 28, global_step=552960
+SPS: 4401
+Epoch: 29, global_step=573440
+SPS: 4437
+Epoch: 30, global_step=593920
+SPS: 4475
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.236284255981445
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17236284911632538
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_31.pt
+SPS: 4211
+Epoch: 32, global_step=634880
+SPS: 4256
+Epoch: 33, global_step=655360
+SPS: 4288
+Epoch: 34, global_step=675840
+SPS: 4327
+Epoch: 35, global_step=696320
+SPS: 4355
+Epoch: 36, global_step=716800
+SPS: 4392
+Epoch: 37, global_step=737280
+SPS: 4421
+Epoch: 38, global_step=757760
+SPS: 4458
+Epoch: 39, global_step=778240
+SPS: 4484
+Epoch: 40, global_step=798720
+SPS: 4517
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.93133544921875
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15931336581707
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_41.pt
+SPS: 4316
+Epoch: 42, global_step=839680
+SPS: 4345
+Epoch: 43, global_step=860160
+SPS: 4374
+Epoch: 44, global_step=880640
+SPS: 4399
+Epoch: 45, global_step=901120
+SPS: 4423
+Epoch: 46, global_step=921600
+SPS: 4448
+Epoch: 47, global_step=942080
+SPS: 4471
+Epoch: 48, global_step=962560
+SPS: 4497
+Epoch: 49, global_step=983040
+SPS: 4518
+Epoch: 50, global_step=1003520
+SPS: 4542
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.03590965270996
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1703590750694275
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_51.pt
+SPS: 4382
+Epoch: 52, global_step=1044480
+SPS: 4403
+Epoch: 53, global_step=1064960
+SPS: 4426
+Epoch: 54, global_step=1085440
+SPS: 4448
+Epoch: 55, global_step=1105920
+SPS: 4489
+Epoch: 56, global_step=1126400
+SPS: 4531
+Epoch: 57, global_step=1146880
+SPS: 4554
+Epoch: 58, global_step=1167360
+SPS: 4569
+Epoch: 59, global_step=1187840
+SPS: 4591
+Epoch: 60, global_step=1208320
+SPS: 4608
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.610342025756836
+eval_episode_len_mean=100.0
+eval_reward_mean=0.16610342264175415
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_61.pt
+SPS: 4464
+Epoch: 62, global_step=1249280
+SPS: 4485
+Epoch: 63, global_step=1269760
+SPS: 4502
+Epoch: 64, global_step=1290240
+SPS: 4524
+Epoch: 65, global_step=1310720
+SPS: 4550
+Epoch: 66, global_step=1331200
+SPS: 4570
+Epoch: 67, global_step=1351680
+SPS: 4588
+Epoch: 68, global_step=1372160
+SPS: 4616
+Epoch: 69, global_step=1392640
+SPS: 4636
+Epoch: 70, global_step=1413120
+SPS: 4649
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.74368667602539
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17743685841560364
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_71.pt
+SPS: 4519
+Epoch: 72, global_step=1454080
+SPS: 4536
+Epoch: 73, global_step=1474560
+SPS: 4560
+Epoch: 74, global_step=1495040
+SPS: 4575
+Epoch: 75, global_step=1515520
+SPS: 4611
+Epoch: 76, global_step=1536000
+SPS: 4619
+Epoch: 77, global_step=1556480
+SPS: 4634
+Epoch: 78, global_step=1576960
+SPS: 4648
+Epoch: 79, global_step=1597440
+SPS: 4665
+Epoch: 80, global_step=1617920
+SPS: 4675
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.333221435546875
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17333221435546875
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_81.pt
+SPS: 4555
+Epoch: 82, global_step=1658880
+SPS: 4566
+Epoch: 83, global_step=1679360
+SPS: 4581
+Epoch: 84, global_step=1699840
+SPS: 4600
+Epoch: 85, global_step=1720320
+SPS: 4630
+Epoch: 86, global_step=1740800
+SPS: 4637
+Epoch: 87, global_step=1761280
+SPS: 4650
+Epoch: 88, global_step=1781760
+SPS: 4675
+Epoch: 89, global_step=1802240
+SPS: 4688
+Epoch: 90, global_step=1822720
+SPS: 4698
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.167098999023438
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17167097330093384
+eval_success_at_end_mean=0.0
+model saved to runs/007_tuna_fish_can_normal_1763636073/ckpt_91.pt
+SPS: 4595
+Epoch: 92, global_step=1863680
+SPS: 4622
+Epoch: 93, global_step=1884160
+SPS: 4637
+Epoch: 94, global_step=1904640
+SPS: 4658
+Epoch: 95, global_step=1925120
+SPS: 4683
+Epoch: 96, global_step=1945600
+SPS: 4689
+Epoch: 97, global_step=1966080
+SPS: 4699
+model saved to runs/007_tuna_fish_can_normal_1763636073/final_ckpt.pt

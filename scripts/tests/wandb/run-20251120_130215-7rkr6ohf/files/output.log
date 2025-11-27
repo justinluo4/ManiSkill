@@ -1,0 +1,279 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=4.741018772125244
+eval_episode_len_mean=100.0
+eval_reward_mean=0.047410186380147934
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_1.pt
+SPS: 1024
+Epoch: 2, global_step=20480
+SPS: 1688
+Epoch: 3, global_step=40960
+SPS: 2115
+Epoch: 4, global_step=61440
+SPS: 2428
+Epoch: 5, global_step=81920
+SPS: 2663
+Epoch: 6, global_step=102400
+SPS: 2848
+Epoch: 7, global_step=122880
+SPS: 3035
+Epoch: 8, global_step=143360
+SPS: 3151
+Epoch: 9, global_step=163840
+SPS: 3243
+Epoch: 10, global_step=184320
+SPS: 3313
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=12.112133026123047
+eval_episode_len_mean=100.0
+eval_reward_mean=0.12112133204936981
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_11.pt
+SPS: 2795
+Epoch: 12, global_step=225280
+SPS: 2878
+Epoch: 13, global_step=245760
+SPS: 2947
+Epoch: 14, global_step=266240
+SPS: 3024
+Epoch: 15, global_step=286720
+SPS: 3069
+Epoch: 16, global_step=307200
+SPS: 3110
+Epoch: 17, global_step=327680
+SPS: 3153
+Epoch: 18, global_step=348160
+SPS: 3203
+Epoch: 19, global_step=368640
+SPS: 3236
+Epoch: 20, global_step=389120
+SPS: 3262
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.318453788757324
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11318454146385193
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_21.pt
+SPS: 2968
+Epoch: 22, global_step=430080
+SPS: 2999
+Epoch: 23, global_step=450560
+SPS: 3032
+Epoch: 24, global_step=471040
+SPS: 3064
+Epoch: 25, global_step=491520
+SPS: 3107
+Epoch: 26, global_step=512000
+SPS: 3123
+Epoch: 27, global_step=532480
+SPS: 3146
+Epoch: 28, global_step=552960
+SPS: 3172
+Epoch: 29, global_step=573440
+SPS: 3213
+Epoch: 30, global_step=593920
+SPS: 3248
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=13.099063873291016
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1309906244277954
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_31.pt
+SPS: 3055
+Epoch: 32, global_step=634880
+SPS: 3086
+Epoch: 33, global_step=655360
+SPS: 3117
+Epoch: 34, global_step=675840
+SPS: 3134
+Epoch: 35, global_step=696320
+SPS: 3150
+Epoch: 36, global_step=716800
+SPS: 3169
+Epoch: 37, global_step=737280
+SPS: 3202
+Epoch: 38, global_step=757760
+SPS: 3231
+Epoch: 39, global_step=778240
+SPS: 3239
+Epoch: 40, global_step=798720
+SPS: 3252
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=14.103265762329102
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1410326510667801
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_41.pt
+SPS: 3098
+Epoch: 42, global_step=839680
+SPS: 3113
+Epoch: 43, global_step=860160
+SPS: 3130
+Epoch: 44, global_step=880640
+SPS: 3162
+Epoch: 45, global_step=901120
+SPS: 3185
+Epoch: 46, global_step=921600
+SPS: 3206
+Epoch: 47, global_step=942080
+SPS: 3216
+Epoch: 48, global_step=962560
+SPS: 3229
+Epoch: 49, global_step=983040
+SPS: 3244
+Epoch: 50, global_step=1003520
+SPS: 3276
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=13.84179973602295
+eval_episode_len_mean=100.0
+eval_reward_mean=0.13841798901557922
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_51.pt
+SPS: 3152
+Epoch: 52, global_step=1044480
+SPS: 3171
+Epoch: 53, global_step=1064960
+SPS: 3198
+Epoch: 54, global_step=1085440
+SPS: 3216
+Epoch: 55, global_step=1105920
+SPS: 3227
+Epoch: 56, global_step=1126400
+SPS: 3237
+Epoch: 57, global_step=1146880
+SPS: 3249
+Epoch: 58, global_step=1167360
+SPS: 3270
+Epoch: 59, global_step=1187840
+SPS: 3291
+Epoch: 60, global_step=1208320
+SPS: 3308
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=13.611738204956055
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1361173689365387
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_61.pt
+SPS: 3208
+Epoch: 62, global_step=1249280
+SPS: 3228
+Epoch: 63, global_step=1269760
+SPS: 3245
+Epoch: 64, global_step=1290240
+SPS: 3251
+Epoch: 65, global_step=1310720
+SPS: 3259
+Epoch: 66, global_step=1331200
+SPS: 3270
+Epoch: 67, global_step=1351680
+SPS: 3288
+Epoch: 68, global_step=1372160
+SPS: 3305
+Epoch: 69, global_step=1392640
+SPS: 3322
+Epoch: 70, global_step=1413120
+SPS: 3324
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=14.389894485473633
+eval_episode_len_mean=100.0
+eval_reward_mean=0.14389894902706146
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_71.pt
+SPS: 3235
+Epoch: 72, global_step=1454080
+SPS: 3248
+Epoch: 73, global_step=1474560
+SPS: 3255
+Epoch: 74, global_step=1495040
+SPS: 3264
+Epoch: 75, global_step=1515520
+SPS: 3274
+Epoch: 76, global_step=1536000
+SPS: 3293
+Epoch: 77, global_step=1556480
+SPS: 3303
+Epoch: 78, global_step=1576960
+SPS: 3312
+Epoch: 79, global_step=1597440
+SPS: 3319
+Epoch: 80, global_step=1617920
+SPS: 3326
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=14.47920036315918
+eval_episode_len_mean=100.0
+eval_reward_mean=0.14479202032089233
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_81.pt
+SPS: 3244
+Epoch: 82, global_step=1658880
+SPS: 3253
+Epoch: 83, global_step=1679360
+SPS: 3261
+Epoch: 84, global_step=1699840
+SPS: 3280
+Epoch: 85, global_step=1720320
+SPS: 3288
+Epoch: 86, global_step=1740800
+SPS: 3297
+Epoch: 87, global_step=1761280
+SPS: 3303
+Epoch: 88, global_step=1781760
+SPS: 3310
+Epoch: 89, global_step=1802240
+SPS: 3319
+Epoch: 90, global_step=1822720
+SPS: 3336
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.497658729553223
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15497659146785736
+eval_success_at_end_mean=0.0
+model saved to runs/072-b_toy_airplane_decomp_1763672531/ckpt_91.pt
+SPS: 3262
+Epoch: 92, global_step=1863680
+SPS: 3275
+Epoch: 93, global_step=1884160
+SPS: 3287
+Epoch: 94, global_step=1904640
+SPS: 3299
+Epoch: 95, global_step=1925120
+SPS: 3301
+Epoch: 96, global_step=1945600
+SPS: 3306
+Epoch: 97, global_step=1966080
+SPS: 3313
+model saved to runs/072-b_toy_airplane_decomp_1763672531/final_ckpt.pt

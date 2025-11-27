@@ -1,0 +1,279 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=6.923182487487793
+eval_episode_len_mean=100.0
+eval_reward_mean=0.06923182308673859
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_1.pt
+SPS: 2673
+Epoch: 2, global_step=20480
+SPS: 4806
+Epoch: 3, global_step=40960
+SPS: 6555
+Epoch: 4, global_step=61440
+SPS: 8002
+Epoch: 5, global_step=81920
+SPS: 9216
+Epoch: 6, global_step=102400
+SPS: 10250
+Epoch: 7, global_step=122880
+SPS: 11164
+Epoch: 8, global_step=143360
+SPS: 11957
+Epoch: 9, global_step=163840
+SPS: 12669
+Epoch: 10, global_step=184320
+SPS: 13303
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=12.855534553527832
+eval_episode_len_mean=100.0
+eval_reward_mean=0.12855535745620728
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_11.pt
+SPS: 10017
+Epoch: 12, global_step=225280
+SPS: 10492
+Epoch: 13, global_step=245760
+SPS: 10959
+Epoch: 14, global_step=266240
+SPS: 11403
+Epoch: 15, global_step=286720
+SPS: 11817
+Epoch: 16, global_step=307200
+SPS: 12177
+Epoch: 17, global_step=327680
+SPS: 12507
+Epoch: 18, global_step=348160
+SPS: 12834
+Epoch: 19, global_step=368640
+SPS: 13151
+Epoch: 20, global_step=389120
+SPS: 13443
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=12.210572242736816
+eval_episode_len_mean=100.0
+eval_reward_mean=0.12210572510957718
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_21.pt
+SPS: 11431
+Epoch: 22, global_step=430080
+SPS: 11683
+Epoch: 23, global_step=450560
+SPS: 11913
+Epoch: 24, global_step=471040
+SPS: 12158
+Epoch: 25, global_step=491520
+SPS: 12382
+Epoch: 26, global_step=512000
+SPS: 12613
+Epoch: 27, global_step=532480
+SPS: 12827
+Epoch: 28, global_step=552960
+SPS: 13041
+Epoch: 29, global_step=573440
+SPS: 13241
+Epoch: 30, global_step=593920
+SPS: 13436
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=11.892879486083984
+eval_episode_len_mean=100.0
+eval_reward_mean=0.11892879754304886
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_31.pt
+SPS: 11978
+Epoch: 32, global_step=634880
+SPS: 12160
+Epoch: 33, global_step=655360
+SPS: 12336
+Epoch: 34, global_step=675840
+SPS: 12509
+Epoch: 35, global_step=696320
+SPS: 12675
+Epoch: 36, global_step=716800
+SPS: 12838
+Epoch: 37, global_step=737280
+SPS: 12998
+Epoch: 38, global_step=757760
+SPS: 13149
+Epoch: 39, global_step=778240
+SPS: 13293
+Epoch: 40, global_step=798720
+SPS: 13437
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.591629028320312
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1659162938594818
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_41.pt
+SPS: 12322
+Epoch: 42, global_step=839680
+SPS: 12466
+Epoch: 43, global_step=860160
+SPS: 12606
+Epoch: 44, global_step=880640
+SPS: 12742
+Epoch: 45, global_step=901120
+SPS: 12874
+Epoch: 46, global_step=921600
+SPS: 13003
+Epoch: 47, global_step=942080
+SPS: 13129
+Epoch: 48, global_step=962560
+SPS: 13250
+Epoch: 49, global_step=983040
+SPS: 13365
+Epoch: 50, global_step=1003520
+SPS: 13477
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.351082801818848
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15351082384586334
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_51.pt
+SPS: 12559
+Epoch: 52, global_step=1044480
+SPS: 12671
+Epoch: 53, global_step=1064960
+SPS: 12782
+Epoch: 54, global_step=1085440
+SPS: 12892
+Epoch: 55, global_step=1105920
+SPS: 12998
+Epoch: 56, global_step=1126400
+SPS: 13103
+Epoch: 57, global_step=1146880
+SPS: 13207
+Epoch: 58, global_step=1167360
+SPS: 13309
+Epoch: 59, global_step=1187840
+SPS: 13411
+Epoch: 60, global_step=1208320
+SPS: 13506
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.625343322753906
+eval_episode_len_mean=100.0
+eval_reward_mean=0.16625343263149261
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_61.pt
+SPS: 12739
+Epoch: 62, global_step=1249280
+SPS: 12834
+Epoch: 63, global_step=1269760
+SPS: 12926
+Epoch: 64, global_step=1290240
+SPS: 13015
+Epoch: 65, global_step=1310720
+SPS: 13101
+Epoch: 66, global_step=1331200
+SPS: 13189
+Epoch: 67, global_step=1351680
+SPS: 13277
+Epoch: 68, global_step=1372160
+SPS: 13362
+Epoch: 69, global_step=1392640
+SPS: 13484
+Epoch: 70, global_step=1413120
+SPS: 13566
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.909191131591797
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15909191966056824
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_71.pt
+SPS: 12893
+Epoch: 72, global_step=1454080
+SPS: 12969
+Epoch: 73, global_step=1474560
+SPS: 13043
+Epoch: 74, global_step=1495040
+SPS: 13119
+Epoch: 75, global_step=1515520
+SPS: 13194
+Epoch: 76, global_step=1536000
+SPS: 13269
+Epoch: 77, global_step=1556480
+SPS: 13337
+Epoch: 78, global_step=1576960
+SPS: 13410
+Epoch: 79, global_step=1597440
+SPS: 13480
+Epoch: 80, global_step=1617920
+SPS: 13576
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.402164459228516
+eval_episode_len_mean=100.0
+eval_reward_mean=0.16402165591716766
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_81.pt
+SPS: 12982
+Epoch: 82, global_step=1658880
+SPS: 13049
+Epoch: 83, global_step=1679360
+SPS: 13122
+Epoch: 84, global_step=1699840
+SPS: 13188
+Epoch: 85, global_step=1720320
+SPS: 13254
+Epoch: 86, global_step=1740800
+SPS: 13319
+Epoch: 87, global_step=1761280
+SPS: 13385
+Epoch: 88, global_step=1781760
+SPS: 13467
+Epoch: 89, global_step=1802240
+SPS: 13556
+Epoch: 90, global_step=1822720
+SPS: 13617
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.87466812133789
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15874668955802917
+eval_success_at_end_mean=0.0
+model saved to runs/054_softball_normal_1763658642/ckpt_91.pt
+SPS: 13070
+Epoch: 92, global_step=1863680
+SPS: 13127
+Epoch: 93, global_step=1884160
+SPS: 13187
+Epoch: 94, global_step=1904640
+SPS: 13245
+Epoch: 95, global_step=1925120
+SPS: 13305
+Epoch: 96, global_step=1945600
+SPS: 13363
+Epoch: 97, global_step=1966080
+SPS: 13422
+model saved to runs/054_softball_normal_1763658642/final_ckpt.pt

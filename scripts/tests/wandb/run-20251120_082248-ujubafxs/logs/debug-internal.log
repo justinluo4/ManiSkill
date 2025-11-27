@@ -1,0 +1,13 @@
+{"time":"2025-11-20T08:22:48.497030718-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-20T08:22:48.674778116-08:00","level":"INFO","msg":"stream: created new stream","id":"ujubafxs"}
+{"time":"2025-11-20T08:22:48.674805383-08:00","level":"INFO","msg":"stream: started","id":"ujubafxs"}
+{"time":"2025-11-20T08:22:48.674803683-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ujubafxs"}
+{"time":"2025-11-20T08:22:48.674802803-08:00","level":"INFO","msg":"handler: started","stream_id":"ujubafxs"}
+{"time":"2025-11-20T08:22:48.674814871-08:00","level":"INFO","msg":"sender: started","stream_id":"ujubafxs"}
+{"time":"2025-11-20T08:22:48.955897869-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-20T08:25:40.090356903-08:00","level":"INFO","msg":"stream: closing","id":"ujubafxs"}
+{"time":"2025-11-20T08:25:40.55643136-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-20T08:25:40.724867063-08:00","level":"INFO","msg":"handler: closed","stream_id":"ujubafxs"}
+{"time":"2025-11-20T08:25:40.724896373-08:00","level":"INFO","msg":"sender: closed","stream_id":"ujubafxs"}
+{"time":"2025-11-20T08:25:40.72489912-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ujubafxs"}
+{"time":"2025-11-20T08:25:40.724971859-08:00","level":"INFO","msg":"stream: closed","id":"ujubafxs"}

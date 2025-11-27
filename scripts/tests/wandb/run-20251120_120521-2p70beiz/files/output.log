@@ -1,0 +1,279 @@
+####
+args.num_iterations=97 args.num_envs=1024 args.num_eval_envs=8
+args.minibatch_size=640 args.batch_size=20480 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=6.529566764831543
+eval_episode_len_mean=100.0
+eval_reward_mean=0.06529567390680313
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_1.pt
+SPS: 1174
+Epoch: 2, global_step=20480
+SPS: 2003
+Epoch: 3, global_step=40960
+SPS: 2655
+Epoch: 4, global_step=61440
+SPS: 3180
+Epoch: 5, global_step=81920
+SPS: 3550
+Epoch: 6, global_step=102400
+SPS: 3911
+Epoch: 7, global_step=122880
+SPS: 4145
+Epoch: 8, global_step=143360
+SPS: 4341
+Epoch: 9, global_step=163840
+SPS: 4571
+Epoch: 10, global_step=184320
+SPS: 4710
+Epoch: 11, global_step=204800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.602644920349121
+eval_episode_len_mean=100.0
+eval_reward_mean=0.1560264527797699
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_11.pt
+SPS: 3964
+Epoch: 12, global_step=225280
+SPS: 4097
+Epoch: 13, global_step=245760
+SPS: 4160
+Epoch: 14, global_step=266240
+SPS: 4270
+Epoch: 15, global_step=286720
+SPS: 4367
+Epoch: 16, global_step=307200
+SPS: 4493
+Epoch: 17, global_step=327680
+SPS: 4573
+Epoch: 18, global_step=348160
+SPS: 4665
+Epoch: 19, global_step=368640
+SPS: 4712
+Epoch: 20, global_step=389120
+SPS: 4783
+Epoch: 21, global_step=409600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.328269958496094
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15328270196914673
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_21.pt
+SPS: 4216
+Epoch: 22, global_step=430080
+SPS: 4276
+Epoch: 23, global_step=450560
+SPS: 4281
+Epoch: 24, global_step=471040
+SPS: 4344
+Epoch: 25, global_step=491520
+SPS: 4406
+Epoch: 26, global_step=512000
+SPS: 4457
+Epoch: 27, global_step=532480
+SPS: 4528
+Epoch: 28, global_step=552960
+SPS: 4577
+Epoch: 29, global_step=573440
+SPS: 4619
+Epoch: 30, global_step=593920
+SPS: 4670
+Epoch: 31, global_step=614400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=15.297602653503418
+eval_episode_len_mean=100.0
+eval_reward_mean=0.15297602117061615
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_31.pt
+SPS: 4312
+Epoch: 32, global_step=634880
+SPS: 4321
+Epoch: 33, global_step=655360
+SPS: 4373
+Epoch: 34, global_step=675840
+SPS: 4417
+Epoch: 35, global_step=696320
+SPS: 4468
+Epoch: 36, global_step=716800
+SPS: 4502
+Epoch: 37, global_step=737280
+SPS: 4578
+Epoch: 38, global_step=757760
+SPS: 4603
+Epoch: 39, global_step=778240
+SPS: 4641
+Epoch: 40, global_step=798720
+SPS: 4673
+Epoch: 41, global_step=819200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.040584564208984
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17040583491325378
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_41.pt
+SPS: 4380
+Epoch: 42, global_step=839680
+SPS: 4387
+Epoch: 43, global_step=860160
+SPS: 4420
+Epoch: 44, global_step=880640
+SPS: 4459
+Epoch: 45, global_step=901120
+SPS: 4488
+Epoch: 46, global_step=921600
+SPS: 4528
+Epoch: 47, global_step=942080
+SPS: 4555
+Epoch: 48, global_step=962560
+SPS: 4582
+Epoch: 49, global_step=983040
+SPS: 4613
+Epoch: 50, global_step=1003520
+SPS: 4643
+Epoch: 51, global_step=1024000
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.949766159057617
+eval_episode_len_mean=100.0
+eval_reward_mean=0.16949765384197235
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_51.pt
+SPS: 4404
+Epoch: 52, global_step=1044480
+SPS: 4411
+Epoch: 53, global_step=1064960
+SPS: 4438
+Epoch: 54, global_step=1085440
+SPS: 4471
+Epoch: 55, global_step=1105920
+SPS: 4493
+Epoch: 56, global_step=1126400
+SPS: 4516
+Epoch: 57, global_step=1146880
+SPS: 4545
+Epoch: 58, global_step=1167360
+SPS: 4566
+Epoch: 59, global_step=1187840
+SPS: 4587
+Epoch: 60, global_step=1208320
+SPS: 4611
+Epoch: 61, global_step=1228800
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=16.848236083984375
+eval_episode_len_mean=100.0
+eval_reward_mean=0.16848236322402954
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_61.pt
+SPS: 4416
+Epoch: 62, global_step=1249280
+SPS: 4419
+Epoch: 63, global_step=1269760
+SPS: 4444
+Epoch: 64, global_step=1290240
+SPS: 4469
+Epoch: 65, global_step=1310720
+SPS: 4493
+Epoch: 66, global_step=1331200
+SPS: 4514
+Epoch: 67, global_step=1351680
+SPS: 4538
+Epoch: 68, global_step=1372160
+SPS: 4556
+Epoch: 69, global_step=1392640
+SPS: 4573
+Epoch: 70, global_step=1413120
+SPS: 4590
+Epoch: 71, global_step=1433600
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.47788429260254
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17477884888648987
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_71.pt
+SPS: 4427
+Epoch: 72, global_step=1454080
+SPS: 4452
+Epoch: 73, global_step=1474560
+SPS: 4465
+Epoch: 74, global_step=1495040
+SPS: 4484
+Epoch: 75, global_step=1515520
+SPS: 4520
+Epoch: 76, global_step=1536000
+SPS: 4541
+Epoch: 77, global_step=1556480
+SPS: 4563
+Epoch: 78, global_step=1576960
+SPS: 4583
+Epoch: 79, global_step=1597440
+SPS: 4597
+Epoch: 80, global_step=1617920
+SPS: 4630
+Epoch: 81, global_step=1638400
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.596237182617188
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17596235871315002
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_81.pt
+SPS: 4484
+Epoch: 82, global_step=1658880
+SPS: 4499
+Epoch: 83, global_step=1679360
+SPS: 4500
+Epoch: 84, global_step=1699840
+SPS: 4535
+Epoch: 85, global_step=1720320
+SPS: 4564
+Epoch: 86, global_step=1740800
+SPS: 4586
+Epoch: 87, global_step=1761280
+SPS: 4603
+Epoch: 88, global_step=1781760
+SPS: 4623
+Epoch: 89, global_step=1802240
+SPS: 4654
+Epoch: 90, global_step=1822720
+SPS: 4684
+Epoch: 91, global_step=1843200
+Evaluating
+Evaluated 800 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=17.18760871887207
+eval_episode_len_mean=100.0
+eval_reward_mean=0.17187608778476715
+eval_success_at_end_mean=0.0
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/ckpt_91.pt
+SPS: 4563
+Epoch: 92, global_step=1863680
+SPS: 4570
+Epoch: 93, global_step=1884160
+SPS: 4591
+Epoch: 94, global_step=1904640
+SPS: 4609
+Epoch: 95, global_step=1925120
+SPS: 4611
+Epoch: 96, global_step=1945600
+SPS: 4627
+Epoch: 97, global_step=1966080
+SPS: 4644
+model saved to runs/070-a_colored_wood_blocks_decomp_1763669117/final_ckpt.pt

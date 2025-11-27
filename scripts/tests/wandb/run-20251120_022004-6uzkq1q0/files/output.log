@@ -269,3 +269,11 @@ SPS: 11048
 Epoch: 93, global_step=1884160
 SPS: 11074
 Epoch: 94, global_step=1904640
+SPS: 11114
+Epoch: 95, global_step=1925120
+SPS: 11151
+Epoch: 96, global_step=1945600
+SPS: 11192
+Epoch: 97, global_step=1966080
+SPS: 11231
+model saved to runs/002_master_chef_can_normal_1763634001/final_ckpt.pt

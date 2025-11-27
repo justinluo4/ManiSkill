@@ -1,0 +1,13 @@
+{"time":"2025-11-20T09:02:38.169029144-08:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-11-20T09:02:38.348448837-08:00","level":"INFO","msg":"stream: created new stream","id":"9uleowwp"}
+{"time":"2025-11-20T09:02:38.348466575-08:00","level":"INFO","msg":"stream: started","id":"9uleowwp"}
+{"time":"2025-11-20T09:02:38.348480238-08:00","level":"INFO","msg":"sender: started","stream_id":"9uleowwp"}
+{"time":"2025-11-20T09:02:38.34848301-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"9uleowwp"}
+{"time":"2025-11-20T09:02:38.348489216-08:00","level":"INFO","msg":"handler: started","stream_id":"9uleowwp"}
+{"time":"2025-11-20T09:02:38.63250679-08:00","level":"ERROR","msg":"git repo not found","error":"repository does not exist"}
+{"time":"2025-11-20T09:05:13.945348694-08:00","level":"INFO","msg":"stream: closing","id":"9uleowwp"}
+{"time":"2025-11-20T09:05:14.313840332-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-20T09:05:14.469983116-08:00","level":"INFO","msg":"handler: closed","stream_id":"9uleowwp"}
+{"time":"2025-11-20T09:05:14.469999051-08:00","level":"INFO","msg":"sender: closed","stream_id":"9uleowwp"}
+{"time":"2025-11-20T09:05:14.469997785-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"9uleowwp"}
+{"time":"2025-11-20T09:05:14.470067068-08:00","level":"INFO","msg":"stream: closed","id":"9uleowwp"}

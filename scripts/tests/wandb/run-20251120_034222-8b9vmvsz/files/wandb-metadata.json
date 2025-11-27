@@ -1,0 +1,52 @@
+{
+  "os":  "Linux-6.8.0-86-generic-x86_64-with-glibc2.35",
+  "python":  "CPython 3.12.11",
+  "startedAt":  "2025-11-20T11:42:22.388597Z",
+  "args":  [
+    "--env_id=CustomPick-v1",
+    "--num_envs=1024",
+    "--update_epochs=8",
+    "--num_minibatches=32",
+    "--total_timesteps=2_000_000",
+    "--eval_freq=10",
+    "--num-steps=20",
+    "--track",
+    "--pick_object_name",
+    "011_banana",
+    "--use_decomp"
+  ],
+  "program":  "/home/jluo/PycharmProjects/ManiSkill/examples/baselines/ppo/ppo.py",
+  "codePath":  "examples/baselines/ppo/ppo.py",
+  "git":  {
+    "remote":  "https://github.com/justinluo4/ManiSkill",
+    "commit":  "d891fbfbb37206d4d5ce3dea7468c08ac73922b0"
+  },
+  "email":  "jluo2@caltech.edu",
+  "root":  "/home/jluo/PycharmProjects/ManiSkill/scripts/tests",
+  "host":  "jigu-ubuntu-fah",
+  "executable":  "/home/jluo/anaconda3/envs/ManiSkill/bin/python",
+  "cpu_count":  16,
+  "cpu_count_logical":  24,
+  "gpu":  "NVIDIA GeForce RTX 4090",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1006880845824",
+      "used":  "821629321216"
+    }
+  },
+  "memory":  {
+    "total":  "67195047936"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada",
+      "uuid":  "GPU-2b0351f8-d897-b0f4-f747-643fcedaeb38"
+    }
+  ],
+  "cudaVersion":  "12.2",
+  "writerId":  "nqbof0chke63umfaca8ju6pkut7fmgwn"
+}
