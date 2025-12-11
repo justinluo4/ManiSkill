@@ -5,7 +5,7 @@ from string import Template
 
 # --- Configuration ---
 LOCAL_MODELS_DIR = os.path.expanduser("~/.maniskill/data/tasks/grasping/mani_skill2_ycb/models")
-START_OBJECT_NUM = 72
+START_OBJECT_NUM = 76
 TOTAL_TIMESTEPS = "2_000_000"
 IMAGE_NAME = "gitlab-registry.nrp-nautilus.io/jluo2/ucsd:latest"
 
@@ -37,10 +37,6 @@ spec:
             secretKeyRef:
               name: jluo-wandb
               key: WANDB_API_KEY
-        - name: MANISKILL_REPO
-          value: "https://github.com/justinluo4/ManiSkill.git"
-        - name: MANISKILL_REF
-          value: "main"
         resources:
           limits:
             cpu: "4"
@@ -65,15 +61,31 @@ spec:
         args:
         - |
           set -euo pipefail
+          echo "Starting ManiSkill PPO runs inside Kubernetes pod"
+          
+          # Clone ManiSkill repo if not already present
+          if [ ! -d "/opt/ManiSkill" ]; then
+            echo "Cloning ManiSkill repository..."
+            git clone --depth 1 --branch main "https://github.com/justinluo4/ManiSkill.git" /opt/ManiSkill
+          fi
+          
+          cd /opt/ManiSkill
+          
+          # Install dependencies
+          echo "Installing ManiSkill dependencies..."
+          pip install --upgrade pip
+          pip install -e .
+          pip install torch tensorboard
+          
+          # Download physx GPU binary via sapien
+          echo "Downloading physx GPU binary..."
+          python -c "import sapien.physx as physx; physx.enable_gpu()" || true
+          mkdir -p /root/.maniskill/data/tasks/grasping/mani_skill2_ycb
+          ln -s /data/models /root/.maniskill/data/tasks/grasping/mani_skill2_ycb/
+
           echo "Starting Job for Object: ${object_name}"
           
-          # OPTIONAL: Link the models in the PVC to where ManiSkill expects them
-          # Example: If code expects models at /opt/ManiSkill/data, link /data/models there
-          # ln -s /data/models /opt/ManiSkill/data/tasks/grasping/mani_skill2_ycb/models
           
-          # Ensure output goes to the PVC so you can see it later
-          export LOG_DIR="/data/training_results/${object_name}"
-          mkdir -p "$$LOG_DIR"
 
           cd /opt/ManiSkill
           
@@ -88,8 +100,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "${object_name}" \\
-            --use_decomp \\
-            --tensorboard-log-path "$$LOG_DIR" 
+            --use_decomp
 
           echo "Running PPO (no decomp)..."
           python examples/baselines/ppo/ppo.py \\
@@ -101,8 +112,7 @@ spec:
             --eval_freq=10 \\
             --num-steps=20 \\
             --track \\
-            --pick_object_name "${object_name}" \\
-            --tensorboard-log-path "$$LOG_DIR"
+            --pick_object_name "${object_name}"
 
       volumes:
       # --- VOLUME DEFINITION ---
@@ -126,7 +136,7 @@ def main():
         object_name = os.path.basename(os.path.normpath(object_dir))
         
         try:
-            prefix_str = object_name.split('_')[0]
+            prefix_str = object_name[:3]
             object_num = int(prefix_str)
         except ValueError:
             object_num = -1
@@ -135,7 +145,14 @@ def main():
             continue
 
         sanitized_name = object_name.replace("_", "-").lower()
+        job_name = f"maniskill-ppo-{sanitized_name}"
         print(f"Submitting Job for: {object_name}...")
+
+        # Delete existing job if it exists (Jobs have immutable spec.template)
+        delete_cmd = ['kubectl', 'delete', 'job', job_name, '--ignore-not-found=true']
+        delete_process = subprocess.run(delete_cmd, capture_output=True, text=True)
+        if delete_process.returncode == 0 and delete_process.stdout:
+            print(f"  Deleted existing job: {job_name}")
 
         k8s_manifest = job_template.substitute(
             object_name=object_name,
@@ -144,6 +161,12 @@ def main():
             image=IMAGE_NAME,
             pvc_name=PVC_NAME
         )
+
+        # Debug: write YAML to file for inspection
+        if object_name == "077_rubiks_cube":
+            with open(f"/tmp/debug_{sanitized_name}.yaml", "w") as f:
+                f.write(k8s_manifest)
+            print(f"Debug: Wrote YAML to /tmp/debug_{sanitized_name}.yaml")
 
         process = subprocess.Popen(['kubectl', 'apply', '-f', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         stdout, stderr = process.communicate(input=k8s_manifest)

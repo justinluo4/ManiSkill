@@ -351,7 +351,7 @@ class CustomPickEnv(BaseEnv):
 
     def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
 
-        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp)
+        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, orient_weight = 0.1)
 
 
         # reward += (torch.tanh(diff1).clamp(min = 0) + torch.tanh(diff2).clamp(min = 0) ) * 0.5
