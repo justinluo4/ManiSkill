@@ -27,6 +27,8 @@ def get_python_version():
 
 def get_dependencies():
     install_requires = [
+        "tensorboard",
+        "wandb",
         "numpy>=1.22,<2.0.0",
         "scipy",
         "dacite",

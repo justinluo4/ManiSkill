@@ -11,12 +11,42 @@ spec:
       image: gitlab-registry.nrp-nautilus.io/jluo2/ucsd:latest
       imagePullPolicy: IfNotPresent
       command: ["/bin/bash", "-lc"]
+      env:
+        - name: WANDB_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: wandb-secret
+              key: WANDB_API_KEY
+        - name: MANISKILL_REPO
+          value: "https://github.com/justinluo4/ManiSkill.git"
+        - name: MANISKILL_REF
+          value: "main"
       args:
         - |
           set -euo pipefail
           echo "Starting ManiSkill PPO runs inside Kubernetes pod"
+          
+          # Clone ManiSkill repo if not already present
+          if [ ! -d "/opt/ManiSkill" ]; then
+            echo "Cloning ManiSkill repository..."
+            git clone --depth 1 --branch "${MANISKILL_REF}" "${MANISKILL_REPO}" /opt/ManiSkill
+          fi
+          
           cd /opt/ManiSkill
-          exec bash
+          
+          # Install dependencies
+          echo "Installing ManiSkill dependencies..."
+          pip install --upgrade pip
+          pip install -e .
+          pip install torch tensorboard
+          
+          # Download physx GPU binary via sapien
+          echo "Downloading physx GPU binary..."
+          python -c "exec('import sapien.physx as physx;\ntry:\n  physx.enable_gpu()\nexcept:\n  pass;')"
+          
+          echo "Setup complete. Ready to run experiments."
+          # exec bash
+          sleep infinity
       resources:
         limits:
           cpu: "4"
@@ -27,9 +57,23 @@ spec:
           memory: 8Gi
           nvidia.com/gpu: 1
       volumeMounts:
+        # 1. Mount the PVC to /data
+        - name: persistent-storage
+          mountPath: /data
+        # 2. (Optional) Keep Shm for PyTorch speed
+        - name: dshm
+          mountPath: /dev/shm
+        # 3. Keep existing workdir mount
         - name: workdir
           mountPath: /workspace
   volumes:
+    # --- VOLUME DEFINITION ---
+    - name: persistent-storage
+      persistentVolumeClaim:
+        claimName: maniskill-pvc
+    - name: dshm
+      emptyDir:
+        medium: Memory
     - name: workdir
       emptyDir: {}
 

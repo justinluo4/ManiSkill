@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: maniskill-pvc
+spec:
+  accessModes:
+    - ReadWriteMany  # Critical: Allows multiple pods to attach at once
+  resources:
+    requests:
+      storage: 20Gi # Adjust size based on your model/log needs
+  storageClassName: rook-cephfs # NOTE: On Nautilus, this is usually 'rook-cephfs'. On generic k8s, remove this line to use default.
+
