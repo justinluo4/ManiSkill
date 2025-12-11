@@ -52,7 +52,7 @@ class CustomPickEnv(BaseEnv):
     # Define target grasp (sample multiple if there are degrees of freedom)
 
 
-    def __init__(self, *args, robot_uids="panda_no_collision", robot_init_qpos_noise=0.02, **kwargs):
+    def __init__(self, *args, robot_uids="panda", robot_init_qpos_noise=0.02, **kwargs):
         self.asset_root = Path(f"{ASSET_DIR}/tasks/grasping/")
         self.robot_init_qpos_noise = robot_init_qpos_noise
         self.target_grasp = None

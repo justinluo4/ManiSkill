@@ -31,6 +31,16 @@ spec:
       - name: runner
         image: ${image}
         imagePullPolicy: IfNotPresent
+        env:
+        - name: WANDB_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: jluo-wandb
+              key: WANDB_API_KEY
+        - name: MANISKILL_REPO
+          value: "https://github.com/justinluo4/ManiSkill.git"
+        - name: MANISKILL_REF
+          value: "main"
         resources:
           limits:
             cpu: "4"

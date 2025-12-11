@@ -15,7 +15,7 @@ spec:
         - name: WANDB_API_KEY
           valueFrom:
             secretKeyRef:
-              name: wandb-secret
+              name: jluo-wandb
               key: WANDB_API_KEY
         - name: MANISKILL_REPO
           value: "https://github.com/justinluo4/ManiSkill.git"
@@ -43,7 +43,8 @@ spec:
           # Download physx GPU binary via sapien
           echo "Downloading physx GPU binary..."
           python -c "exec('import sapien.physx as physx;\ntry:\n  physx.enable_gpu()\nexcept:\n  pass;')"
-          
+          mkdir -p /root/.maniskill/data/tasks/grasping/mani_skill2_ycb/models
+          ln -s /data/models /root/.maniskill/data/tasks/grasping/mani_skill2_ycb/
           echo "Setup complete. Ready to run experiments."
           # exec bash
           sleep infinity
