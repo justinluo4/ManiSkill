@@ -58,7 +58,7 @@ class CustomPickEnv(BaseEnv):
         self.target_grasp = None
         self.use_decomp = kwargs.pop("use_decomp", False)
         self.object_name = kwargs.pop("object_name", None)
-        self.guide_traj = False
+        self.guide_traj = True
 
         super().__init__(*args, robot_uids=robot_uids, **kwargs)
 
@@ -305,12 +305,15 @@ class CustomPickEnv(BaseEnv):
             orient=self.cube.pose.p
         )
         if "state" in self.obs_mode:
+            rot_diff = torch.acos(torch.sum(self.agent.tcp.pose.q * self.target_grasp.q, axis=1) ** 2 * 2 - 1) / torch.pi
+            rot_diff = rot_diff.minimum(1 - rot_diff)
             obs.update(
                 obj_pose=self.cube.pose.raw_pose,
                 # tcp_to_obj_pos=self.cube.pose.p - self.agent.tcp.pose.p,
                 obj_to_goal_pos=self.goal_site.pose.p - self.cube.pose.p,
                 tcp_to_target_pos=self.target_grasp.p - self.agent.tcp.pose.p,
                 target_pose=self.target_grasp.raw_pose,
+                rotation_diff=rot_diff,
             )
         return obs
 
@@ -351,8 +354,7 @@ class CustomPickEnv(BaseEnv):
 
     def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
 
-        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, orient_weight = 0.4)
-
+        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, reach_weight=0, orient_weight = 0.6)
 
         # reward += (torch.tanh(diff1).clamp(min = 0) + torch.tanh(diff2).clamp(min = 0) ) * 0.5
 

@@ -44,10 +44,12 @@ spec:
             cpu: "1"
             memory: 8Gi
             nvidia.com/gpu: 1
+            ephemeral-storage: 100Gi
           requests:
             cpu: "1"
             memory: 8Gi
             nvidia.com/gpu: 1
+            ephemeral-storage: 100Gi
         
         # --- MOUNT CONFIGURATION ---
         volumeMounts:
