@@ -1,13 +1,15 @@
 import os
 import subprocess
 import glob
+import time
 from string import Template
 
 # --- Configuration ---
 LOCAL_MODELS_DIR = os.path.expanduser("~/.maniskill/data/tasks/grasping/mani_skill2_ycb/models")
-START_OBJECT_NUM = 76
-TOTAL_TIMESTEPS = "2_000_000"
+START_OBJECT_NUM = 0
+TOTAL_TIMESTEPS = "20_000_000"
 IMAGE_NAME = "gitlab-registry.nrp-nautilus.io/jluo2/ucsd:latest"
+MAX_RUNNING_JOBS = 10
 
 PVC_NAME = "maniskill-pvc" 
 
@@ -20,13 +22,13 @@ metadata:
     app: maniskill-sweep
     object: ${object_name}
 spec:
-  backoffLimit: 0 
+  backoffLimit: 2
   template:
     metadata:
       labels:
         app: maniskill-sweep
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
       containers:
       - name: runner
         image: ${image}
@@ -39,11 +41,11 @@ spec:
               key: WANDB_API_KEY
         resources:
           limits:
-            cpu: "4"
-            memory: 16Gi
+            cpu: "1"
+            memory: 8Gi
             nvidia.com/gpu: 1
           requests:
-            cpu: "2"
+            cpu: "1"
             memory: 8Gi
             nvidia.com/gpu: 1
         
@@ -73,6 +75,7 @@ spec:
           
           # Install dependencies
           echo "Installing ManiSkill dependencies..."
+          conda install python=3.12
           pip install --upgrade pip
           pip install -e .
           pip install torch tensorboard
@@ -100,6 +103,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "${object_name}" \\
+            --wandb_project_name="maniskill-ppo" \\
             --use_decomp
 
           echo "Running PPO (no decomp)..."
@@ -112,7 +116,8 @@ spec:
             --eval_freq=10 \\
             --num-steps=20 \\
             --track \\
-            --pick_object_name "${object_name}"
+            --pick_object_name "${object_name}" \\
+            --wandb_project_name="maniskill-ppo"
 
       volumes:
       # --- VOLUME DEFINITION ---
@@ -123,6 +128,41 @@ spec:
         emptyDir:
           medium: Memory
 """)
+
+def get_running_job_count():
+    """Get the number of currently running jobs."""
+    try:
+        # Get all jobs with the app label and check their active status
+        cmd = ['kubectl', 'get', 'jobs', '-l', 'app=maniskill-sweep', 
+               '-o', 'jsonpath={range .items[*]}{.status.active}{"\\n"}{end}']
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+        if result.returncode != 0:
+            return 0
+        
+        # Count jobs with active pods (status.active > 0)
+        count = 0
+        for line in result.stdout.strip().split('\n'):
+            if line.strip():
+                try:
+                    active = int(line.strip())
+                    if active > 0:
+                        count += 1
+                except ValueError:
+                    # If it's not a number, skip it
+                    pass
+        return count
+    except Exception as e:
+        print(f"Warning: Error checking running jobs: {e}")
+        return 0
+
+def wait_for_job_slot():
+    """Wait until there's room for a new job (less than MAX_RUNNING_JOBS running)."""
+    while True:
+        running_count = get_running_job_count()
+        if running_count < MAX_RUNNING_JOBS:
+            return running_count
+        print(f"  Waiting for job slot... ({running_count}/{MAX_RUNNING_JOBS} jobs running)")
+        time.sleep(10)  # Check every 10 seconds
 
 def main():
     if not os.path.exists(LOCAL_MODELS_DIR):
@@ -146,7 +186,10 @@ def main():
 
         sanitized_name = object_name.replace("_", "-").lower()
         job_name = f"maniskill-ppo-{sanitized_name}"
-        print(f"Submitting Job for: {object_name}...")
+        
+        # Wait until there's room for a new job
+        running_count = wait_for_job_slot()
+        print(f"Submitting Job for: {object_name}... ({running_count}/{MAX_RUNNING_JOBS} jobs running)")
 
         # Delete existing job if it exists (Jobs have immutable spec.template)
         delete_cmd = ['kubectl', 'delete', 'job', job_name, '--ignore-not-found=true']

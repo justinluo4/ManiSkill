@@ -82,7 +82,7 @@ class CustomPickEnv(BaseEnv):
         return CameraConfig("render_camera", pose, 512, 512, 1, 0.01, 100)
 
     def _load_agent(self, options: dict):
-        super()._load_agent(options, sapien.Pose(p=[-0.615, 0, 0]))
+        super()._load_agent(options, sapien.Pose(p=[-0.615, 0.2, 0]))
 
     # def reset(self, seed: Union[None, int, list[int]] = None, options: Union[None, dict] = None):
     #     return super().reset(options = {"reconfigure": True})
@@ -351,7 +351,7 @@ class CustomPickEnv(BaseEnv):
 
     def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
 
-        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, orient_weight = 0.1)
+        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, orient_weight = 0.4)
 
 
         # reward += (torch.tanh(diff1).clamp(min = 0) + torch.tanh(diff2).clamp(min = 0) ) * 0.5
