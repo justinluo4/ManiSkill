@@ -8,28 +8,34 @@ from mpl_toolkits.mplot3d import Axes3D
 from mani_skill import ASSET_DIR
 from matplotlib.widgets import Slider
 import numpy as np
+from scipy.spatial.transform import Rotation as R
+from mani_skill.utils.geometry import rotation_conversions
 
-def grasp_diff(cur_pose, target_pose, reach_weight = 1, orient_weight = 0.5, symmetric = True):
-
-    rot_diff = torch.acos(torch.sum(cur_pose.q * target_pose.q, axis=1)**2 * 2 - 1)/torch.pi
+def rotation_difference(cur_quat, target_quat, symmetric = False):
+    diff = torch.acos(torch.sum(cur_quat * target_quat, axis=1)**2 * 2 - 1)/torch.pi
     if symmetric:
-        rot_diff = rot_diff.minimum(1 - rot_diff)
+        qs = torch.zeros_like(cur_quat)
+        qs[:, 0] = np.cos(np.pi / 2)
+        qs[:, 3] = np.sin(np.pi / 2)
+        flipped = rotation_conversions.quaternion_multiply(cur_quat, qs)
+        diff = diff.minimum(torch.acos(torch.sum(flipped * target_quat, axis=1)**2 * 2 - 1)/torch.pi)
+    return diff
+
+def grasp_diff(cur_pose, target_pose, reach_weight = 1, orient_weight = 1, symmetric = True):
+
+    rot_diff = rotation_difference(cur_pose.q, target_pose.q, symmetric)
     pos_diff = torch.linalg.norm(cur_pose.p - target_pose.p, axis=1)
     return pos_diff * reach_weight + rot_diff * orient_weight
 
-def grasp_reward(cur_pose, target_pose, reach_weight = 1, orient_weight = 1, symmetric = False):
-    rot_diff = torch.acos(torch.sum(cur_pose.q * target_pose.q, axis=1)**2 * 2 - 1)/torch.pi
-    if symmetric:
-        rot_diff = rot_diff.minimum(1 - rot_diff)
+def grasp_reward(cur_pose, target_pose, reach_weight = 1, orient_weight = 1, symmetric = True):
+    rot_diff = rotation_difference(cur_pose.q, target_pose.q, symmetric)
     pos_diff = torch.linalg.norm(cur_pose.p - target_pose.p, axis=1)
     reaching_reward = 1 - torch.tanh(5 * pos_diff)
     orient_reward = 1 - rot_diff
     return reaching_reward * reach_weight + orient_reward * orient_weight
 
 def orient_then_grasp(cur_pose, target_pose, symmetric = True):
-    rot_diff = torch.acos(torch.sum(cur_pose.q * target_pose.q, axis=1)**2 * 2 - 1)/torch.pi
-    if symmetric:
-        rot_diff = rot_diff.minimum(1 - rot_diff)
+    rot_diff = rotation_difference(cur_pose.q, target_pose.q, symmetric)
     pos_diff = torch.linalg.norm(cur_pose.p - target_pose.p, axis=1)
     reaching_reward = 1 - torch.tanh(5 * pos_diff)
     reward = torch.minimum(1 - rot_diff, torch.tensor(0.95))

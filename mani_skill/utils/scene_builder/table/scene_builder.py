@@ -220,6 +220,7 @@ class TableSceneBuilder(SceneBuilder):
                     0.04,
                 ]
             )
+
             if self.env._enhanced_determinism:
                 qpos = (
                     self.env._batched_episode_rng[env_idx].normal(

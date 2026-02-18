@@ -199,7 +199,11 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
 
     # env setup
-    env_kwargs = dict(obs_mode="state", render_mode="rgb_array", sim_backend="physx_cuda", object_name = args.pick_object_name, use_decomp = args.use_decomp)
+    env_kwargs = dict(obs_mode="state", render_mode="rgb_array", sim_backend="physx_cuda")
+    if args.use_decomp:
+        env_kwargs["use_decomp"] = True
+    if args.pick_object_name is not None:
+        env_kwargs["object_name"] = args.pick_object_name
     if args.control_mode is not None:
         env_kwargs["control_mode"] = args.control_mode
     envs = gym.make(args.env_id, num_envs=args.num_envs if not args.evaluate else 1, reconfiguration_freq=args.reconfiguration_freq, **env_kwargs)
@@ -263,6 +267,12 @@ if __name__ == "__main__":
     global_step = 0
     start_time = time.time()
     next_obs, _ = envs.reset(seed=args.seed)
+    # Staggering https://openreview.net/pdf?id=hesM5BWtOJ
+    config = vars(args)
+    stagger_blocks = (max_episode_steps // config["num_steps"])
+    env_block_size = (config["num_envs"] // stagger_blocks)
+    envs.base_env._elapsed_steps = (torch.arange(config["num_envs"],
+                                                 device=device) // env_block_size) *config["num_steps"]
     eval_obs, _ = eval_envs.reset(seed=args.seed)
     next_done = torch.zeros(args.num_envs, device=device)
     print(f"####")

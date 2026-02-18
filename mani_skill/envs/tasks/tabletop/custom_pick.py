@@ -4,6 +4,7 @@ import numpy as np
 import sapien
 import torch
 import random
+import quaternion
 from mani_skill import ASSET_DIR
 import mani_skill.envs.utils.randomization as randomization
 from mani_skill.agents.robots import Fetch, Panda, XArm6Robotiq
@@ -16,7 +17,7 @@ from mani_skill.utils.scene_builder.table import TableSceneBuilder
 from mani_skill.utils.structs.pose import Pose
 from mani_skill.utils.geometry import rotation_conversions
 from mani_skill.examples.motionplanning.panda.motionplanner import build_panda_gripper_grasp_pose_visual
-from mani_skill.utils.grasping import orient_then_grasp, grasp_diff, grasp_reward
+from mani_skill.utils.grasping import orient_then_grasp, grasp_diff, grasp_reward, rotation_difference
 from scipy.spatial.transform import Rotation as R
 from mani_skill.utils.structs.types import GPUMemoryConfig, SimConfig
 import yaml
@@ -56,9 +57,9 @@ class CustomPickEnv(BaseEnv):
         self.asset_root = Path(f"{ASSET_DIR}/tasks/grasping/")
         self.robot_init_qpos_noise = robot_init_qpos_noise
         self.target_grasp = None
-        self.use_decomp = kwargs.pop("use_decomp", False)
+        self.use_decomp = kwargs.pop("use_decomp", True)
         self.object_name = kwargs.pop("object_name", None)
-        self.guide_traj = True
+        self.guide_traj = False
 
         super().__init__(*args, robot_uids=robot_uids, **kwargs)
 
@@ -212,7 +213,7 @@ class CustomPickEnv(BaseEnv):
 
                 builder.add_visuals_from_files(
                     files=[str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj")] * b,
-                    scale=[1] * 3)
+                    scale=[1] * 3) 
             else:
                 builder = self.scene.create_actor_builder()
                 builder.add_multiple_convex_collisions_from_file(
@@ -238,7 +239,7 @@ class CustomPickEnv(BaseEnv):
         self.cmass_marker = actors.build_sphere(
             self.scene,
             radius=0.01,
-            color=[1, 1, 0, 1],
+            color=[1, 0, 0, 1],
             name="cmass",
             body_type="kinematic",
             add_collision=False,
@@ -270,23 +271,37 @@ class CustomPickEnv(BaseEnv):
 
             xyz = torch.zeros((b, 3))
             xyz[:, :2] = torch.rand((b, 2)) * 0.2 - 0.1
-            xyz[:, 0] = xyz[:, 0]/2 - 0.1
-            xyz[:, 2] = self.cube_half_size
-            qs = randomization.random_quaternions(b, lock_x=True, lock_y=True)
-            # qs[:, [0, 2, 1, 3]] = qs[:, [2, 0, 3, 1]]
+            xyz[:, 0] += 0.12
+            reach_angle = torch.arctan2(xyz[:, 1], xyz[:, 0] + 0.5)
+
+            xyz[:, 2] = 0.1
+            # qs = randomization.random_quaternions(b, lock_x=True, lock_y=True)
+            rot = quaternion.as_quat_array(self.local_grasp.q)
+            v = np.quaternion(0, 0, 0, 1)
+            v = rot * v * rot.conjugate()
+            v = quaternion.as_float_array(v)
+            q_angle = np.arctan2(v[:, 2], v[:, 1])
+            q_height = -v[:, 3]
+            turn_angle = -(q_angle - np.array(reach_angle.cpu()))
+            qs = np.zeros((b, 4))
+            qs[:, 0] = np.cos(turn_angle/2)
+            qs[:, 3] = np.sin(turn_angle/2)
+            qs = torch.from_numpy(qs)
             self.cube.set_pose(Pose.create_from_pq(xyz, qs))
             offsets = torch.zeros((b, 3))
             if self.guide_traj:
                 offsets[:, 2] = self.starting_offset
             else:
-                offsets[:, 2] = 0.09
+                offsets[:, 2] = 0.1
             self.offset = Pose.create_from_pq(offsets)
             # self.local_grasp = Pose.create_from_pq(grasp_pos,  grasp_quats)
             ax = torch.zeros((b, 3))
             ax[:, 1] += 1
             q_noise = rotation_conversions.axis_angle_to_quaternion((ax.T * (torch.rand(b)* 0.4 - 0.2)).T)
             # self.local_grasp = self.local_grasp * Pose.create_from_pq(q=q_noise)
+
             self.target_grasp = self.cube.pose * (self.local_grasp * self.offset)
+
             # for g in grasps:
             #     grasp_vis = build_panda_gripper_grasp_pose_visual(self.scene)
             #     grasp_vis.set_pose(self.cube.pose * Pose.create_from_pq(g["position"], (R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat()))
@@ -305,14 +320,18 @@ class CustomPickEnv(BaseEnv):
             orient=self.cube.pose.p
         )
         if "state" in self.obs_mode:
-            rot_diff = torch.acos(torch.sum(self.agent.tcp.pose.q * self.target_grasp.q, axis=1) ** 2 * 2 - 1) / torch.pi
-            rot_diff = rot_diff.minimum(1 - rot_diff)
+            rot_diff = rotation_difference(self.agent.tcp.pose.q, self.target_grasp.q, symmetric=True)
+            tcp_euler = rotation_conversions.matrix_to_euler_angles(rotation_conversions.quaternion_to_matrix(self.agent.tcp.pose.q), "XYZ")
+            target_euler = rotation_conversions.matrix_to_euler_angles(rotation_conversions.quaternion_to_matrix(self.target_grasp.q), "XYZ")
+
             obs.update(
                 obj_pose=self.cube.pose.raw_pose,
                 # tcp_to_obj_pos=self.cube.pose.p - self.agent.tcp.pose.p,
                 obj_to_goal_pos=self.goal_site.pose.p - self.cube.pose.p,
                 tcp_to_target_pos=self.target_grasp.p - self.agent.tcp.pose.p,
                 target_pose=self.target_grasp.raw_pose,
+                target_euler=target_euler,
+                tcp_euler=tcp_euler,
                 rotation_diff=rot_diff,
             )
         return obs
@@ -321,13 +340,15 @@ class CustomPickEnv(BaseEnv):
         if self.guide_traj:
             grasp_dist = grasp_diff(self.agent.tcp.pose, self.target_grasp)
             self.stage += 1 * (grasp_dist < 0.1)
-            step = 0.02
+            step = 0.01
             self.offset.p[grasp_dist < 0.1, 2] += step
             self.offset.p[grasp_dist > 0.5, 2] -= step
 
-            self.offset.p[:, 2] = torch.clamp(self.offset.p[:, 2], min = self.starting_offset, max=0.12)
+            self.offset.p[:, 2] = torch.clamp(self.offset.p[:, 2], min = self.starting_offset, max=0.11)
         self.target_grasp = self.cube.pose *  (self.local_grasp * self.offset)
         self.grasp_vis.set_pose(self.target_grasp)
+
+
 
     def step(self, action: Union[None, np.ndarray, torch.Tensor, Dict]):
         self.update_grasp()
@@ -343,7 +364,7 @@ class CustomPickEnv(BaseEnv):
         is_grasped = self.agent.is_grasping(self.cube, max_angle=20)
         is_robot_static = self.agent.is_static(0.2)
         self.grasp_vis.set_pose(self.target_grasp)
-        rot_diff = torch.acos(torch.sum(self.agent.tcp.pose.q * self.target_grasp.q, dim=1)**2 * 2 - 1)
+        rot_diff = rotation_difference(self.agent.tcp.pose.q, self.target_grasp.q, symmetric=True)
         return {
             "success": is_obj_placed & is_robot_static,
             "is_obj_placed": is_obj_placed,
@@ -354,14 +375,16 @@ class CustomPickEnv(BaseEnv):
 
     def compute_dense_reward(self, obs: Any, action: torch.Tensor, info: Dict):
 
-        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, reach_weight=0, orient_weight = 0.6)
+        reward = grasp_reward(self.agent.tcp.pose, self.target_grasp, reach_weight=1, orient_weight = 1)
+
+
 
         # reward += (torch.tanh(diff1).clamp(min = 0) + torch.tanh(diff2).clamp(min = 0) ) * 0.5
 
         # reward = (reaching_reward*0.5 + diff1 + (diff1.clamp(min = 0) * reaching_reward.clamp(min = 0))**2) * 0.5
         # Add grasp pose reward
         #reward += torch.clamp(self.stage * 0.2, min = 0, max = 1)
-        is_grasped = info["is_grasped"]
+        is_grasped = info["is_grasped"]*2
         reward += is_grasped
         obj_to_goal_dist = torch.linalg.norm(
             self.goal_site.pose.p - self.cube.pose.p, axis=1
