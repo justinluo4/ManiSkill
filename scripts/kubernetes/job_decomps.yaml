@@ -56,12 +56,12 @@ spec:
           cpu: "4"
           memory: 16Gi
           nvidia.com/gpu: 1
-          ephemeral-storage: 100Gi
+          ephemeral-storage: 20Gi
         requests:
           cpu: "2"
           memory: 8Gi
           nvidia.com/gpu: 1
-          ephemeral-storage: 100Gi
+          ephemeral-storage: 20Gi
       volumeMounts:
         # 1. Mount the PVC to /data
         - name: persistent-storage

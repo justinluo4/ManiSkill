@@ -4,7 +4,6 @@ import numpy as np
 import sapien
 import torch
 import random
-import quaternion
 from mani_skill import ASSET_DIR
 import mani_skill.envs.utils.randomization as randomization
 from mani_skill.agents.robots import Fetch, Panda, XArm6Robotiq
@@ -75,7 +74,7 @@ class CustomPickEnv(BaseEnv):
     @property
     def _default_sensor_configs(self):
         pose = sapien_utils.look_at(eye=[0.3, 0, 0.6], target=[-0.1, 0, 0.1])
-        return [CameraConfig("base_camera", pose, 128, 128, np.pi / 2, 0.01, 100)]
+        return [CameraConfig("base_camera", pose, 128, 128, torch.pi / 2, 0.01, 100)]
 
     @property
     def _default_human_render_camera_configs(self):
@@ -148,7 +147,7 @@ class CustomPickEnv(BaseEnv):
 
             objects = os.listdir(self.asset_root / "mani_skill2_ycb" / "models")
             objects.remove("072-d_toy_airplane")
-            objs = [objects[i] for i in np.random.choice(len(objects), b)]
+            objs = [objects[i] for i in torch.randint(len(objects), (b,)).tolist()]
             collision_files = []
             original_files = []
             c = 0
@@ -180,7 +179,7 @@ class CustomPickEnv(BaseEnv):
                 material=None,
                 density=1000,
             )
-            self.local_grasp = Pose.create_from_pq(torch.tensor(np.array(self.grasp_pos)),  torch.tensor(np.array(self.grasp_quats)))
+            self.local_grasp = Pose.create_from_pq(torch.tensor(self.grasp_pos, dtype=torch.float32), torch.tensor(self.grasp_quats, dtype=torch.float32))
             builder.add_visuals_from_files(
                 files = original_files,
                 scale=[1] * 3)
@@ -189,12 +188,12 @@ class CustomPickEnv(BaseEnv):
             with open(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasps.yaml"), 'r') as stream:
                 grasps = yaml.safe_load(stream)["grasps"].values()
             grasp_ids = torch.tensor([g["mesh_id"] for g in grasps])
-            self.grasp_pos = torch.tensor(np.array([g["position"] for g in grasps]))
-            self.grasp_quats = torch.tensor(np.array([(R.from_euler("X", 90, degrees=True) * R.from_quat(
-                [g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps]))
-            scores = np.array([g["confidence"] for g in grasps])
+            self.grasp_pos = torch.tensor([g["position"] for g in grasps], dtype=torch.float32)
+            self.grasp_quats = torch.tensor([(R.from_euler("X", 90, degrees=True) * R.from_quat(
+                [g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps], dtype=torch.float32)
+            scores = torch.tensor([g["confidence"] for g in grasps], dtype=torch.float32)
             scores /= scores.sum()
-            self.selected_grasps = np.random.choice(len(grasp_ids), b, p=scores)
+            self.selected_grasps = torch.multinomial(scores, b, replacement=True)
             self.grasp_pos = self.grasp_pos[self.selected_grasps]
             self.grasp_quats = self.grasp_quats[self.selected_grasps]
             self.local_grasp = Pose.create_from_pq(self.grasp_pos, self.grasp_quats)
@@ -276,17 +275,17 @@ class CustomPickEnv(BaseEnv):
 
             xyz[:, 2] = 0.1
             # qs = randomization.random_quaternions(b, lock_x=True, lock_y=True)
-            rot = quaternion.as_quat_array(self.local_grasp.q)
-            v = np.quaternion(0, 0, 0, 1)
-            v = rot * v * rot.conjugate()
-            v = quaternion.as_float_array(v)
-            q_angle = np.arctan2(v[:, 2], v[:, 1])
-            q_height = -v[:, 3]
-            turn_angle = -(q_angle - np.array(reach_angle.cpu()))
-            qs = np.zeros((b, 4))
-            qs[:, 0] = np.cos(turn_angle/2)
-            qs[:, 3] = np.sin(turn_angle/2)
-            qs = torch.from_numpy(qs)
+            # Rotate the z-axis by the grasp quaternion to find the in-plane orientation
+            rot_mat = rotation_conversions.quaternion_to_matrix(self.local_grasp.q)  # (b, 3, 3)
+            z_vec = torch.zeros(b, 3, device=self.device)
+            z_vec[:, 2] = 1.0
+            rotated = torch.bmm(rot_mat, z_vec.unsqueeze(-1)).squeeze(-1)  # (b, 3)
+            q_angle = torch.atan2(rotated[:, 1], rotated[:, 0])
+            q_height = -rotated[:, 2]
+            turn_angle = -(q_angle - reach_angle)
+            qs = torch.zeros((b, 4), device=self.device)
+            qs[:, 0] = torch.cos(turn_angle / 2)
+            qs[:, 3] = torch.sin(turn_angle / 2)
             self.cube.set_pose(Pose.create_from_pq(xyz, qs))
             offsets = torch.zeros((b, 3))
             if self.guide_traj:

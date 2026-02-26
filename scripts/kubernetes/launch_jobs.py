@@ -32,7 +32,7 @@ spec:
       restartPolicy: OnFailure
       nodeSelector:
         nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
-        nautilus.io/rl: "true"
+
       containers:
       - name: runner
         image: ${image}
@@ -109,10 +109,11 @@ spec:
             --num_minibatches=32 \\
             --total_timesteps="${timesteps}" \\
             --eval_freq=10 \\
-            --num-steps=20 \\
+            --num-steps=100 \\
             --track \\
             --pick_object_name "$$object_name" \\
             --wandb_project_name="maniskill-ppo-runs" \\
+            --partial_reset \\
             --use_decomp
 
           echo "Running PPO (no decomp)..."
@@ -123,10 +124,11 @@ spec:
             --num_minibatches=32 \\
             --total_timesteps="${timesteps}" \\
             --eval_freq=10 \\
-            --num-steps=20 \\
+            --num-steps=100 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-runs"
+            --wandb_project_name="maniskill-ppo-runs" \\
+            --partial_reset
 
       volumes:
       # --- VOLUME DEFINITION ---
