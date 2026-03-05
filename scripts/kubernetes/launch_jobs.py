@@ -23,7 +23,7 @@ spec:
   parallelism: ${parallelism}
   completions: ${num_objects}
   completionMode: Indexed
-  backoffLimit: 2
+  backoffLimit: 4
   template:
     metadata:
       labels:
@@ -32,7 +32,6 @@ spec:
       restartPolicy: OnFailure
       nodeSelector:
         nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
-
       containers:
       - name: runner
         image: ${image}

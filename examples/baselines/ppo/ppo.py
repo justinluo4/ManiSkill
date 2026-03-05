@@ -270,9 +270,9 @@ if __name__ == "__main__":
     # Staggering https://openreview.net/pdf?id=hesM5BWtOJ
     config = vars(args)
     stagger_blocks = (max_episode_steps // config["num_steps"])
-    env_block_size = (config["num_envs"] // stagger_blocks)
-    envs.base_env._elapsed_steps = (torch.arange(config["num_envs"],
-                                                 device=device) // env_block_size) *config["num_steps"]
+    # env_block_size = (config["num_envs"] // stagger_blocks)
+    # envs.base_env._elapsed_steps = (torch.arange(config["num_envs"],
+    #                                              device=device) // env_block_size) *config["num_steps"]
     eval_obs, _ = eval_envs.reset(seed=args.seed)
     next_done = torch.zeros(args.num_envs, device=device)
     print(f"####")

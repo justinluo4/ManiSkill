@@ -139,88 +139,89 @@ class CustomPickEnv(BaseEnv):
         #     name="cube",
         #     initial_pose=sapien.Pose(p=[0, 0, self.cube_half_size]),
         # )
-        b = self.num_envs
+        with torch.device(self.device):
+            b = self.num_envs
 
-        self.grasp_quats = []
-        self.grasp_pos = []
-        if self.object_name is None:
+            self.grasp_quats = []
+            self.grasp_pos = []
+            if self.object_name is None:
 
-            objects = os.listdir(self.asset_root / "mani_skill2_ycb" / "models")
-            objects.remove("072-d_toy_airplane")
-            objs = [objects[i] for i in torch.randint(len(objects), (b,)).tolist()]
-            collision_files = []
-            original_files = []
-            c = 0
-            for obj in objs:
-                with open(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasps.yaml"), 'r') as stream:
+                objects = os.listdir(self.asset_root / "mani_skill2_ycb" / "models")
+                objects.remove("072-d_toy_airplane")
+                objs = [objects[i] for i in torch.randint(len(objects), (b,)).tolist()]
+                collision_files = []
+                original_files = []
+                c = 0
+                for obj in objs:
+                    with open(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasps.yaml"), 'r') as stream:
 
-                    grasps = list(yaml.safe_load(stream)["grasps"].values())
+                        grasps = list(yaml.safe_load(stream)["grasps"].values())
 
-                    g = random.choice(grasps)
-                    rot = R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])
-                    # while rot.apply([0, 0, 1])[2] < 0:
-                    #     g = random.choice(grasps)
-                    #     rot = R.from_euler("X", 90, degrees=True) * R.from_quat(
-                    #         [g["orientation"]["w"]] + g["orientation"]["xyz"])
-                    self.grasp_quats.append(rot.as_quat() )
-                    self.grasp_pos.append(g["position"])
-                    if self.use_decomp:
+                        g = random.choice(grasps)
+                        rot = R.from_euler("X", 90, degrees=True)* R.from_quat([g["orientation"]["w"]] + g["orientation"]["xyz"])
+                        # while rot.apply([0, 0, 1])[2] < 0:
+                        #     g = random.choice(grasps)
+                        #     rot = R.from_euler("X", 90, degrees=True) * R.from_quat(
+                        #         [g["orientation"]["w"]] + g["orientation"]["xyz"])
+                        self.grasp_quats.append(rot.as_quat() )
+                        self.grasp_pos.append(g["position"])
+                        if self.use_decomp:
 
-                        collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasp_decomp" / f"decomp_{g["mesh_id"]}.ply"))
-                    else:
-                        collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "collision_mesh_t=0.04.ply"))
-                    original_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "textured.obj"))
-                c += 1
+                            collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasp_decomp" / f"decomp_{g["mesh_id"]}.ply"))
+                        else:
+                            collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "collision_mesh_t=0.04.ply"))
+                        original_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "textured.obj"))
+                    c += 1
 
-            builder = self.scene.create_decomposition_builder()
-            builder.add_multiple_convex_collisions_from_multiple_files(
-                files=collision_files,
-                scale=[1] * 3,
-                material=None,
-                density=1000,
-            )
-            self.local_grasp = Pose.create_from_pq(torch.tensor(self.grasp_pos, dtype=torch.float32), torch.tensor(self.grasp_quats, dtype=torch.float32))
-            builder.add_visuals_from_files(
-                files = original_files,
-                scale=[1] * 3)
-        else:
-
-            with open(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasps.yaml"), 'r') as stream:
-                grasps = yaml.safe_load(stream)["grasps"].values()
-            grasp_ids = torch.tensor([g["mesh_id"] for g in grasps])
-            self.grasp_pos = torch.tensor([g["position"] for g in grasps], dtype=torch.float32)
-            self.grasp_quats = torch.tensor([(R.from_euler("X", 90, degrees=True) * R.from_quat(
-                [g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps], dtype=torch.float32)
-            scores = torch.tensor([g["confidence"] for g in grasps], dtype=torch.float32)
-            scores /= scores.sum()
-            self.selected_grasps = torch.multinomial(scores, b, replacement=True)
-            self.grasp_pos = self.grasp_pos[self.selected_grasps]
-            self.grasp_quats = self.grasp_quats[self.selected_grasps]
-            self.local_grasp = Pose.create_from_pq(self.grasp_pos, self.grasp_quats)
-            if self.use_decomp:
                 builder = self.scene.create_decomposition_builder()
-                builder.auto_inertial = False
-                collision_files = [str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasp_decomp" / f"decomp_{gid}.ply") for gid in grasp_ids[self.selected_grasps]]
                 builder.add_multiple_convex_collisions_from_multiple_files(
                     files=collision_files,
                     scale=[1] * 3,
                     material=None,
                     density=1000,
                 )
-                builder.match_mass_and_inertia(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj"))
-
-
+                self.local_grasp = Pose.create_from_pq(torch.tensor(self.grasp_pos, dtype=torch.float32), torch.tensor(self.grasp_quats, dtype=torch.float32))
                 builder.add_visuals_from_files(
-                    files=[str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj")] * b,
-                    scale=[1] * 3) 
+                    files = original_files,
+                    scale=[1] * 3)
             else:
-                builder = self.scene.create_actor_builder()
-                builder.add_multiple_convex_collisions_from_file(
-                    filename=str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "collision_mesh_t=0.04.ply"),
-                    scale=[1] * 3,
-                    material=None,
-                )
-                builder.add_visual_from_file(filename = str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj"))
+
+                with open(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasps.yaml"), 'r') as stream:
+                    grasps = yaml.safe_load(stream)["grasps"].values()
+                grasp_ids = torch.tensor([g["mesh_id"] for g in grasps])
+                self.grasp_pos = torch.tensor([g["position"] for g in grasps], dtype=torch.float32)
+                self.grasp_quats = torch.tensor([(R.from_euler("X", 90, degrees=True) * R.from_quat(
+                    [g["orientation"]["w"]] + g["orientation"]["xyz"])).as_quat() for g in grasps], dtype=torch.float32)
+                scores = torch.tensor([g["confidence"] for g in grasps], dtype=torch.float32)
+                scores /= scores.sum()
+                self.selected_grasps = torch.multinomial(scores, b, replacement=True)
+                self.grasp_pos = self.grasp_pos[self.selected_grasps]
+                self.grasp_quats = self.grasp_quats[self.selected_grasps]
+                self.local_grasp = Pose.create_from_pq(self.grasp_pos, self.grasp_quats)
+                if self.use_decomp:
+                    builder = self.scene.create_decomposition_builder()
+                    builder.auto_inertial = False
+                    collision_files = [str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "grasp_decomp" / f"decomp_{gid}.ply") for gid in grasp_ids[self.selected_grasps]]
+                    builder.add_multiple_convex_collisions_from_multiple_files(
+                        files=collision_files,
+                        scale=[1] * 3,
+                        material=None,
+                        density=1000,
+                    )
+                    builder.match_mass_and_inertia(str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj"))
+
+
+                    builder.add_visuals_from_files(
+                        files=[str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj")] * b,
+                        scale=[1] * 3)
+                else:
+                    builder = self.scene.create_actor_builder()
+                    builder.add_multiple_convex_collisions_from_file(
+                        filename=str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "collision_mesh_t=0.04.ply"),
+                        scale=[1] * 3,
+                        material=None,
+                    )
+                    builder.add_visual_from_file(filename = str(self.asset_root / "mani_skill2_ycb" / "models" / self.object_name / "textured.obj"))
 
         builder.set_initial_pose(sapien.Pose())
         self.cube = builder.build(name="cube")
