@@ -12,13 +12,15 @@ from scipy.spatial.transform import Rotation as R
 from mani_skill.utils.geometry import rotation_conversions
 
 def rotation_difference(cur_quat, target_quat, symmetric = False):
-    diff = torch.acos(torch.sum(cur_quat * target_quat, axis=1)**2 * 2 - 1)/torch.pi
+    cos_val = (torch.sum(cur_quat * target_quat, axis=1)**2 * 2 - 1).clamp(-1, 1)
+    diff = torch.acos(cos_val) / torch.pi
     if symmetric:
         qs = torch.zeros_like(cur_quat)
-        qs[:, 0] = np.cos(np.pi / 2)
-        qs[:, 3] = np.sin(np.pi / 2)
+        qs[:, 0] = torch.cos(torch.tensor(torch.pi / 2))
+        qs[:, 3] = torch.sin(torch.tensor(torch.pi / 2))
         flipped = rotation_conversions.quaternion_multiply(cur_quat, qs)
-        diff = diff.minimum(torch.acos(torch.sum(flipped * target_quat, axis=1)**2 * 2 - 1)/torch.pi)
+        cos_val2 = (torch.sum(flipped * target_quat, axis=1)**2 * 2 - 1).clamp(-1, 1)
+        diff = diff.minimum(torch.acos(cos_val2) / torch.pi)
     return diff
 
 def grasp_diff(cur_pose, target_pose, reach_weight = 1, orient_weight = 1, symmetric = True):
