@@ -108,7 +108,7 @@ spec:
             --num_minibatches=32 \\
             --total_timesteps="${timesteps}" \\
             --eval_freq=10 \\
-            --num-steps=100 \\
+            --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
             --wandb_project_name="maniskill-ppo-runs" \\
@@ -123,7 +123,7 @@ spec:
             --num_minibatches=32 \\
             --total_timesteps="${timesteps}" \\
             --eval_freq=10 \\
-            --num-steps=100 \\
+            --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
             --wandb_project_name="maniskill-ppo-runs" \\

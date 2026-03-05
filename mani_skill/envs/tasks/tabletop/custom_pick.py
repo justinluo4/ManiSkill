@@ -140,6 +140,8 @@ class CustomPickEnv(BaseEnv):
         #     initial_pose=sapien.Pose(p=[0, 0, self.cube_half_size]),
         # )
         with torch.device(self.device):
+            self.target_grasp = Pose.create_from_pq(p=torch.zeros((self.num_envs, 3)))
+            self.offsets = Pose.create_from_pq(p=torch.zeros((self.num_envs, 3)))
             b = self.num_envs
 
             self.grasp_quats = []
@@ -277,10 +279,10 @@ class CustomPickEnv(BaseEnv):
             xyz[:, 2] = 0.1
             # qs = randomization.random_quaternions(b, lock_x=True, lock_y=True)
             # Rotate the z-axis by the grasp quaternion to find the in-plane orientation
-            rot_mat = rotation_conversions.quaternion_to_matrix(self.local_grasp.q)  # (b, 3, 3)
+            rot_mat = rotation_conversions.quaternion_to_matrix(self.local_grasp.q[env_idx])  # (b, 3, 3)
             z_vec = torch.zeros(b, 3, device=self.device)
             z_vec[:, 2] = 1.0
-            rotated = torch.bmm(rot_mat, z_vec.unsqueeze(-1)).squeeze(-1)  # (b, 3)
+            rotated = (rot_mat @ z_vec.unsqueeze(-1)).squeeze(-1)  # (b, 3)
             q_angle = torch.atan2(rotated[:, 1], rotated[:, 0])
             q_height = -rotated[:, 2]
             turn_angle = -(q_angle - reach_angle)
@@ -288,19 +290,17 @@ class CustomPickEnv(BaseEnv):
             qs[:, 0] = torch.cos(turn_angle / 2)
             qs[:, 3] = torch.sin(turn_angle / 2)
             self.cube.set_pose(Pose.create_from_pq(xyz, qs))
-            offsets = torch.zeros((b, 3))
             if self.guide_traj:
-                offsets[:, 2] = self.starting_offset
+                self.offsets.p[env_idx, 2] = self.starting_offset
             else:
-                offsets[:, 2] = 0.1
-            self.offset = Pose.create_from_pq(offsets)
+                self.offsets.p[env_idx, 2]  = 0.1
             # self.local_grasp = Pose.create_from_pq(grasp_pos,  grasp_quats)
             ax = torch.zeros((b, 3))
             ax[:, 1] += 1
             q_noise = rotation_conversions.axis_angle_to_quaternion((ax.T * (torch.rand(b)* 0.4 - 0.2)).T)
             # self.local_grasp = self.local_grasp * Pose.create_from_pq(q=q_noise)
 
-            self.target_grasp = self.cube.pose * (self.local_grasp * self.offset)
+            self.target_grasp[env_idx] = self.cube.pose[env_idx] * (self.local_grasp[env_idx] * self.offsets[env_idx])
 
             # for g in grasps:
             #     grasp_vis = build_panda_gripper_grasp_pose_visual(self.scene)
@@ -341,11 +341,11 @@ class CustomPickEnv(BaseEnv):
             grasp_dist = grasp_diff(self.agent.tcp.pose, self.target_grasp)
             self.stage += 1 * (grasp_dist < 0.1)
             step = 0.01
-            self.offset.p[grasp_dist < 0.1, 2] += step
-            self.offset.p[grasp_dist > 0.5, 2] -= step
+            self.offsets.p[grasp_dist < 0.1, 2] += step
+            self.offsets.p[grasp_dist > 0.5, 2] -= step
 
-            self.offset.p[:, 2] = torch.clamp(self.offset.p[:, 2], min = self.starting_offset, max=0.11)
-        self.target_grasp = self.cube.pose *  (self.local_grasp * self.offset)
+            self.offsets.p[:, 2] = torch.clamp(self.offsets.p[:, 2], min = self.starting_offset, max=0.11)
+        self.target_grasp = self.cube.pose *  (self.local_grasp * self.offsets)
         self.grasp_vis.set_pose(self.target_grasp)
 
 

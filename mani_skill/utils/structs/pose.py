@@ -157,6 +157,9 @@ class Pose:
     def __getitem__(self, i):
         return Pose.create(self.raw_pose[i])
 
+    def __setitem__(self, i, value):
+        self.raw_pose[i] = value.raw_pose
+
     def __len__(self):
         return len(self.raw_pose)
 
