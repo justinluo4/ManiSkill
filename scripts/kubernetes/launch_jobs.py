@@ -111,7 +111,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-runs" \\
+            --wandb_project_name="maniskill-ppo-jobs" \\
             --partial_reset \\
             --use_decomp
 
@@ -126,7 +126,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-runs" \\
+            --wandb_project_name="maniskill-ppo-jobs" \\
             --partial_reset
 
       volumes:
@@ -163,7 +163,8 @@ def main():
         print("No objects to process.")
         return
 
-    # Create bash array string: "obj1" "obj2" "obj3"
+    # Create bash array string: "obj1" "o
+    # bj2" "obj3"
     objects_list_str = " ".join([f'"{name}"' for name in final_objects])
 
     print(f"Submitting Indexed Job for {len(final_objects)} objects with parallelism {MAX_PARALLELISM}...")

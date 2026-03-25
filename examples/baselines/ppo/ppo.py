@@ -158,6 +158,7 @@ class Agent(nn.Module):
         return probs.sample()
     def get_action_and_value(self, x, action=None):
         action_mean = self.actor_mean(x)
+        action_mean = torch.nan_to_num(action_mean, 0)
         action_logstd = self.actor_logstd.expand_as(action_mean)
         action_std = torch.exp(action_logstd)
         probs = Normal(action_mean, action_std)

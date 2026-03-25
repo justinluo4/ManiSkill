@@ -334,6 +334,7 @@ class CustomPickEnv(BaseEnv):
                 tcp_euler=tcp_euler,
                 rotation_diff=rot_diff,
             )
+        obs = {k: torch.nan_to_num(v) if isinstance(v, torch.Tensor) else v for k, v in obs.items()}
         return obs
 
     def update_grasp(self):
@@ -403,7 +404,7 @@ class CustomPickEnv(BaseEnv):
         reward += static_reward * info["is_obj_placed"]
 
         reward[info["success"]] += 5
-        return reward
+        return torch.nan_to_num(reward)
 
     def compute_normalized_dense_reward(
             self, obs: Any, action: torch.Tensor, info: Dict
