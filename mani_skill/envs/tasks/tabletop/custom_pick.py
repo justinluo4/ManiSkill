@@ -169,7 +169,7 @@ class CustomPickEnv(BaseEnv):
                         self.grasp_pos.append(g["position"])
                         if self.use_decomp:
 
-                            collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasp_decomp" / f"decomp_{g["mesh_id"]}.ply"))
+                            collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "grasp_decomp" / f"decomp_{g['mesh_id']}.ply"))
                         else:
                             collision_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "collision_mesh_t=0.04.ply"))
                         original_files.append(str(self.asset_root / "mani_skill2_ycb" / "models" / obj / "textured.obj"))

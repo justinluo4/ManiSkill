@@ -201,8 +201,7 @@ if __name__ == "__main__":
 
     # env setup
     env_kwargs = dict(obs_mode="state", render_mode="rgb_array", sim_backend="physx_cuda")
-    if args.use_decomp:
-        env_kwargs["use_decomp"] = True
+    env_kwargs["use_decomp"] = args.use_decomp
     if args.pick_object_name is not None:
         env_kwargs["object_name"] = args.pick_object_name
     if args.control_mode is not None:

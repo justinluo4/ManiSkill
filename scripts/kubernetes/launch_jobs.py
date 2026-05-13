@@ -8,7 +8,7 @@ LOCAL_MODELS_DIR = os.path.expanduser("~/.maniskill/data/tasks/grasping/mani_ski
 START_OBJECT_NUM = 0
 TOTAL_TIMESTEPS = "20_000_000"
 IMAGE_NAME = "gitlab-registry.nrp-nautilus.io/jluo2/ucsd:latest"
-MAX_PARALLELISM = 16  # Number of pods to run at once
+MAX_PARALLELISM = 15  # Number of pods to run at once
 
 PVC_NAME = "maniskill-pvc" 
 
@@ -23,15 +23,18 @@ spec:
   parallelism: ${parallelism}
   completions: ${num_objects}
   completionMode: Indexed
-  backoffLimit: 4
+  backoffLimit: 300
+  ttlSecondsAfterFinished: 86400
   template:
     metadata:
       labels:
         app: maniskill-sweep
+        nautilus.io/sim: "true"
     spec:
-      restartPolicy: OnFailure
+      restartPolicy: Never
       nodeSelector:
-        nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
+        nvidia.com/gpu.product: NVIDIA-GeForce-RTX-3090
+
       containers:
       - name: runner
         image: ${image}
@@ -44,13 +47,13 @@ spec:
               key: WANDB_API_KEY
         resources:
           limits:
-            cpu: "1"
-            memory: 8Gi
+            cpu: "2"
+            memory: 16Gi
             nvidia.com/gpu: 1
             ephemeral-storage: 40Gi
           requests:
             cpu: "1"
-            memory: 8Gi
+            memory: 16Gi
             nvidia.com/gpu: 1
             ephemeral-storage: 40Gi
         
@@ -111,7 +114,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-jobs" \\
+            --wandb_project_name="maniskill-ppo-sweep-real2" \\
             --partial_reset \\
             --use_decomp
 
@@ -126,7 +129,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-jobs" \\
+            --wandb_project_name="maniskill-ppo-sweep-real2" \\
             --partial_reset
 
       volumes:

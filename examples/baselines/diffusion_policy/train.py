@@ -93,6 +93,11 @@ class Args:
     # additional tags/configs for logging purposes to wandb and shared comparisons with other algorithms
     demo_type: Optional[str] = None
 
+    pick_object_name: Optional[str] = None
+    """the YCB object to use for the custom pick env"""
+    use_decomp: bool = False
+    """whether to do task-aware decomp"""
+
 
 class SmallDemoDataset_DiffusionPolicy(Dataset): # Load everything into GPU memory
     def __init__(self, data_path, device, num_traj):
@@ -264,7 +269,9 @@ def save_ckpt(run_name, tag):
 
 if __name__ == "__main__":
     args = tyro.cli(Args)
-    if args.exp_name is None:
+    if args.pick_object_name is not None:
+        run_name = f"{args.pick_object_name}_{'decomp' if args.use_decomp else 'normal'}_{int(time.time())}"
+    elif args.exp_name is None:
         args.exp_name = os.path.basename(__file__)[: -len(".py")]
         run_name = f"{args.env_id}__{args.exp_name}__{args.seed}__{int(time.time())}"
     else:
@@ -297,6 +304,9 @@ if __name__ == "__main__":
     env_kwargs = dict(control_mode=args.control_mode, reward_mode="sparse", obs_mode="state", render_mode="rgb_array", human_render_camera_configs=dict(shader_pack="default"))
     assert args.max_episode_steps != None, "max_episode_steps must be specified as imitation learning algorithms task solve speed is dependent on the data you train on"
     env_kwargs["max_episode_steps"] = args.max_episode_steps
+    env_kwargs["use_decomp"] = args.use_decomp
+    if args.pick_object_name is not None:
+        env_kwargs["object_name"] = args.pick_object_name
     other_kwargs = dict(obs_horizon=args.obs_horizon)
     envs = make_eval_envs(args.env_id, args.num_eval_envs, args.sim_backend, env_kwargs, other_kwargs, video_dir=f'runs/{run_name}/videos' if args.capture_video else None)
 
