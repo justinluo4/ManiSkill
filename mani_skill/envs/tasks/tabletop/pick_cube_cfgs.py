@@ -34,6 +34,34 @@ PICK_CUBE_CONFIGS = {
         "human_cam_eye_pos": [0.6, 0.7, 0.6],
         "human_cam_target_pos": [0.0, 0.0, 0.35],
     },
+    # The Ability 5-finger hand is large; a bigger cube gives the fingers more
+    # surface to form a stable opposition grasp, and a slightly larger goal
+    # threshold makes the place-and-hold success achievable for the dexterous
+    # hand. Cameras/spawn match the panda tabletop setup.
+    "xarm7_ability": {
+        "cube_half_size": 0.03,
+        "goal_thresh": 0.04,
+        "cube_spawn_half_size": 0.1,
+        "cube_spawn_center": (0, 0),
+        "max_goal_height": 0.3,
+        "sensor_cam_eye_pos": [0.3, 0, 0.6],
+        "sensor_cam_target_pos": [-0.1, 0, 0.1],
+        "human_cam_eye_pos": [0.6, 0.7, 0.6],
+        "human_cam_target_pos": [0.0, 0.0, 0.35],
+    },
+    # XArm6 + Allegro 16-DOF dexterous hand. Same large-cube / forgiving-goal
+    # tuning as xarm7_ability so the big multi-finger hand has graspable surface.
+    "xarm6_allegro_right": {
+        "cube_half_size": 0.03,
+        "goal_thresh": 0.04,
+        "cube_spawn_half_size": 0.1,
+        "cube_spawn_center": (0, 0),
+        "max_goal_height": 0.3,
+        "sensor_cam_eye_pos": [0.3, 0, 0.6],
+        "sensor_cam_target_pos": [-0.1, 0, 0.1],
+        "human_cam_eye_pos": [0.6, 0.7, 0.6],
+        "human_cam_target_pos": [0.0, 0.0, 0.35],
+    },
     "xarm6_robotiq": {
         "cube_half_size": 0.02,
         "goal_thresh": 0.025,

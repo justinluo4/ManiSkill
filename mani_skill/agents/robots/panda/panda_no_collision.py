@@ -15,7 +15,7 @@ from mani_skill.utils.structs.actor import Actor
 
 @register_agent()
 class PandaNoCollision(BaseAgent):
-    uid = "panda_no_collision"
+    uid = "panda"
     urdf_path = f"{PACKAGE_ASSET_DIR}/robots/panda/panda_v2_no_collision.urdf"
     urdf_config = dict(
         _materials=dict(

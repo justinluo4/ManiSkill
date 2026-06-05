@@ -114,7 +114,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-sweep-real2" \\
+            --wandb_project_name="maniskill-ppo-sweep-real3" \\
             --partial_reset \\
             --use_decomp
 
@@ -129,7 +129,7 @@ spec:
             --num-steps=20 \\
             --track \\
             --pick_object_name "$$object_name" \\
-            --wandb_project_name="maniskill-ppo-sweep-real2" \\
+            --wandb_project_name="maniskill-ppo-sweep-real3" \\
             --partial_reset
 
       volumes:
